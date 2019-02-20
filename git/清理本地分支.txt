@@ -1,0 +1,15 @@
+#拉取远程到本地，并更新本地和远程的对应关系
+ git fetch -p
+
+
+// 显示本地分支和服务器分支的映射关系
+git branch -vv
+
+// 显示本地、服务器所有分支
+git branch -a
+
+# 然后再执行 删除本地分支（远程已经没有的对应的分支）
+$ git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -d
+
+上面不可用，使用下面的命令
+git br -vv | grep gone | awk '{print $1}' | xargs git br -d (gone表示远端分支已删除）

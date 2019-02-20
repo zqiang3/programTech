@@ -1,0 +1,44 @@
+def fun(a, b, c):
+	print a, b, c
+
+fun(1, 2, 3)
+
+L = [1, 2, 3]
+fun(*L)
+
+*做了什么
+它拆开数列L的数值作为位置参数，并把这些位置参数传给函数’fun’来调用。
+
+因此拆数列、传位置参数意味着fun(*l)与fun(1,2,3)是等效的，因为l = [1,2,3]。
+
+总结：*拆开数列的每个值作为一个参数传递给函数
+L=[2, 3]
+fun(1, *L) # 也是合法的
+
+################################
+'*args’在函数定义中是做什么用的？
+它接收元组作为位置参数，而非是常见的参数列表。在这里，”args”是个元组。在我们解释中不要担心”常见的参数”这部分的理解，这个会在接下来的例子中逐渐明了。
+
+>>> def fun(a, *args):
+...     print "a is ", a
+...     print "args is ", args
+
+>>> fun(11,12,34,43)
+a is  11
+args is  (12, 34, 43)
+
+很容易看到,’a’打印出为11，即第一个位置参数。’a’之后只一个参数’*args’.因此，’args’接收除常规参数之外的位置参数作为元组。因此元组args作为元组接收12,34和43。
+
+
+再举一个例子
+>>> def calculate_sum(*args):
+...     return sum(args)
+
+>>> def ignore_first_calculate_sum(a,*iargs):
+...     required_sum = calculate_sum(*iargs)
+...     print "sum is ", required_sum
+...
+
+我们可以传任意个参数给这个函数。第一个参数被常规参数’a’接收，其他参数被’iargs’作为元组接收。正如我们考虑的案例，计算除第一个参数之外的其他参数的和。因此，我们用’a’接收第一个参数,’iargs’是包含其他参数的元组。我们用到函数’calculate_sum’，但’calculate_sum’需要多个位置参数作为元组传给’args’。所以在函数’ignore_first_calculate_sum’需要拆元组’iargs’,然后将元素作为位置参数传给’calculate_sum’.注意,用’*’拆元组。
+
+‘required_sum=calculate_sum(iargs)’不能这么调用，因为传给’calculate_sum’之前我们需要unpack数值。不使用’*’将不会unpack数值,也就不能执行想要的动作

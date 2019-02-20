@@ -1,0 +1,10 @@
+vi/vim中使用s命令来替换字符串，该命令有很多种不同的使用方法，可实现复杂的功能。
+:%s/base_path/abs_path  # 替换每一行的第一个base_path为abs_path
+等同于:g/base_path/s//abs_path/
+替换每一行的第一个base_path为abs_path
+
+:%s/base_path/abs_path/g  # 替换每一行的所有base_path为abs_path
+
+
+8009413
+7940637

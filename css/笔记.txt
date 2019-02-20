@@ -1,0 +1,130 @@
+内联样式 内部样式表 外部样式表
+最好的方式是通过外部引用css文件
+
+
+# 在<head>部分添加样式信息
+
+<head>
+    <meta charset="UTF-8">
+    <title>cai j</title>
+
+    <style type="text/css">
+        h1 {
+            color: red;
+        }
+
+        p {
+            color: blue;
+        }
+    </style>
+</head>
+
+
+# 使用style属性制作一个没有下划线的链接
+
+<a href="http://www.runoob.com/" style="text-decoration: none;">访问runoob.com</a>
+
+
+# 链接到一个外部样式表
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+
+# 文本
+
+现在通常使用font-family（字体），color（颜色），和font-size（字体大小）属性来定义文本样式，而不是使用<font>标签。
+
+文本的对齐属性取代了旧标签<center>
+
+<style> 定义文本样式
+<link> 定义资源引用地址
+
+用css控制网页的样式和布局。
+css是层叠样式表
+内容与表现分离
+css样式表极大提高了工作效率
+
+
+css规则
+选择器
+声明 property: value
+
+注释 /*  */
+
+id选择器
+css中id选择器以#来定义
+id属性不要以数字开头 类名也不要以数字开头
+
+class选择器
+class可以在多个元素使用
+以一个"."号表示
+
+特定的HTML元素
+p {}  # 所有的p元素
+
+单位和属性值之间不要有空格
+
+# 层叠次序
+当同一个 HTML 元素被不止一个样式定义时，会使用哪个样式呢？
+一般而言，所有的样式会根据下面的规则层叠于一个新的虚拟样式表中，其中数字 4 拥有最高的优先权。
+浏览器缺省设置
+外部样式表
+内部样式表（位于 <head> 标签内部）
+内联样式（在 HTML 元素内部）
+
+
+# CSS背景
+background-color
+background-image
+background-repeat
+background-attachment
+background-position
+
+CSS中，颜色值通常以以下方式定义:
+十六进制 - 如："#ff0000"
+RGB - 如："rgb(255,0,0)"
+颜色名称 - 如："red"
+
+background-repeat: repeat-x; 水平平铺
+no-repeat; 不平铺
+background-position: right top;  图像在背景中的位置
+
+背景－简写属性
+background: #ffffff url('img_tree.png') no-repeat right top;
+
+当使用简写属性时，属性值的顺序为：:
+background-color
+background-image
+background-repeat
+background-attachment
+background-position
+
+
+# 文本
+text-align: justify;  每一行被展开为宽度相等，左，右外边距是对齐（如杂志和报纸）
+
+text-decoration: none; 从设计的角度看 text-decoration属性主要是用来删除链接的下划线
+
+h1 {text-decoration:overline;}
+h2 {text-decoration:line-through;}
+h3 {text-decoration:underline;}
+
+p.uppercase {text-transform:uppercase;}  转换为大写
+p.lowercase {text-transform:lowercase;}  转换为小写
+p.capitalize {text-transform:capitalize;} 每个单词首字母大写
+
+text-indent: 50px; 文本缩进属性是用来指定文本的第一行的缩进。
+
+word-spacing: 30px;  指定单词之间的距离
+line-height: 70%  指定行的高度
+
+在计算机屏幕上，sans-serif字体被认为是比serif字体容易阅读
+
+font-style 正常 斜体
+
+
+如果你不指定一个字体的大小，默认大小和普通文本段落一样，是16像素（16px=1em）
+
+用em来设置字体大小
+为了避免Internet Explorer 中无法调整文本的问题，许多开发者使用 em 单位代替像素。
+em的尺寸单位由W3C建议。
+1em和当前字体大小相等。在浏览器中默认的文字大小是16px。
+因此，1em的默认大小是16px。可以通过下面这个公式将像素转换为em：px/16=em

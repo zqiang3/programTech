@@ -1,0 +1,12 @@
+sed, stream editor 流编辑器
+
+function:
+a
+c
+d
+i
+p
+s: 取代
+'s/被取代的字符串/新的字符串/g'
+例：截取ip
+/sbin/ifconfig eth0 | grep 'inet addr' | sed 's/^.*addr://g' | sed 's/Bcast.*$//g'

@@ -1,0 +1,6 @@
+删除某collection的全部索引
+db.collection.dropIndexes()
+mongo_db[table_name].drop_indexes()
+
+删除某个索引
+db.collection.dropIndex({x: 1, y: -1})

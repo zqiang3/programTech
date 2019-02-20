@@ -1,0 +1,15 @@
+gethostbyname()返回对应于给定主机的包含主机名字和地址信息的hostent结构指针
+
+struct hostent
+{
+	char *h_name;
+	char **h_aliases;
+	short h_addrtype;
+	short h_length;
+	char **h_addr_list;
+};
+h_addr h_addr_list的第一地址
+
+#include <netdb.h>
+struct hostent *gethostbyname(const char *hostname)
+success: 非空指针  fail: 空指针

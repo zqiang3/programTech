@@ -1,0 +1,13 @@
+ctrl+shift+[/] 选定代码块开始、结束
+ctrl+delete 删除至字符结束
+ctrl+backspace 删除至字符开始
+
+查找ctrl+f
+F3 下一个
+shfit+F3 上一个
+
+ctrl+shift+f 全局查找
+ctrl+shift+r 全局替换
+
+alt+1 preject
+alt+7 structure

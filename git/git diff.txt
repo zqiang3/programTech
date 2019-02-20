@@ -1,0 +1,2 @@
+git diff是针对工作区和stage进行比较，如果改动已经加入到了stage中，就不会在git diff中看到。
+使用git diff --cached，可比较stage和HEAD中的内容。

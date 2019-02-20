@@ -1,0 +1,13 @@
+www.vim.org
+http://vim.wikia.com/wiki/Best_Vim_Tips
+
+normal, insert and visual mode
+entering a number before a command can repeat it
+
+dw dd : 都会将删除的内容粘贴到剪切板
+p : copy paste
+w : begin of word
+e : end of word
+
+* # g* g# : find word under cursor(forwards/backwards)
+% : match brackets {} [] ()

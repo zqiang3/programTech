@@ -1,0 +1,15 @@
+Polysh是一个交互式命令，可以在一台服务器上批量的对一批服务器进行处理。
+Polysh is a tool to aggregate several remote shells into one.
+
+# 安装
+wget wget http://guichaz.free.fr/polysh/files/polysh-0.4.tar.gz 
+tar -zxvf polysh-0.4.tar.gz 
+cd polysh-0.4 
+su 
+python setup.py install
+
+# xshell 配置xagent
+打开文件-属性，选择SSH选项，选择”使用密码处理的Xagent(SSH代理)”。然后将Xshell重启。
+
+# 使用
+polysh 106.2.38.111

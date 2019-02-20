@@ -1,0 +1,25 @@
+HTTP中的基本认证是一种用来允许Web浏览器或其他客户端程序在请求时提供用户名和口令形式的身份凭证的一种登录验证方式。
+发送之前以用户名追加一个冒号然后串接上口令，并将得出的结果字体串再用Base64算法编码。
+
+
+
+
+import urllib2
+import base64
+def main():
+    username = 'flv'
+    password = 'flv#777'
+    # Base64编码
+    str_base64 = base64.encodestring('{0}:{1}'.format(username, password))[:-1]
+    auth_header = 'Basic %s' % str_base64
+
+    url = 'http://robot.cc.163.gz/flv_all/39173234/'
+    # http请求
+    req = urllib2.Request(url)
+    # http头增加认证
+    req.add_header('Authorization', auth_header)
+
+    f = urllib2.urlopen(req, timeout=10)
+
+    content = f.read()
+    print type(content), content

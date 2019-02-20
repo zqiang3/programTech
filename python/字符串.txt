@@ -1,0 +1,6 @@
+与字符串相关的问题总是很多，比如池化、编码等。
+
+短字符串存储在arena区域，str、unicode单字符会被永久缓存
+
+split strip
+find replace

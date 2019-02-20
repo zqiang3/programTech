@@ -1,0 +1,29 @@
+配置文件settings里每一项都是什么含义
+
+
+# 模板
+表达式 {{}}
+控制流程 {% if %} {% endif %}
+{% if %}  {% elif %} {% else %} {% endif %}
+{% for i in data %} {% endfor %}
+{% for i in data reversed %} {% endfor %}  # 反向迭代
+{% ifequal user cur_user %} {% endifequal %}
+{% ifequal var_name 'sitenews' %}  {% else %} {% endifequal %}
+
+
+# 注释
+{# 这是一个注释 #}
+
+
+# 过滤器
+{{ name | lower }}
+{{ my_list|first|upper }}  # 取列表中的第一个元素转化为大写
+{{ bio|truncatewords: "30" }}  # 过滤器有参数，参数跟随冒号之后并以双引号包含
+
+
+
+# 模型
+django规定，如果要使用模型，必须要创建一个app
+python manage.py startapp TestMedel
+
+在settings.py中找到INSTALLED_APPS这一项，添加'TestModel'

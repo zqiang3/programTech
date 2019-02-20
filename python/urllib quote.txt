@@ -1,0 +1,6 @@
+from urllib import quote, quote_plus
+
+urllib.quote(string, safe='/')
+使用%xx转义替换string中的特殊字符，字母数字和'_.-'永远不会转义。默认情况下，这个函数用于转义URL中的路径部分。可选的safe参数指出其它不应该转义的字符，默认值为'/'
+
+quote_plus 会将空格转换为加号

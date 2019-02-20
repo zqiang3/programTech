@@ -1,0 +1,3 @@
+classpath即为java文件编译后的class文件的目录
+
+-classpath 参数

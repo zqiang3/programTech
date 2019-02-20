@@ -1,0 +1,6 @@
+由于settings.py文件放在了settings文件夹，所以要向上取一层目录
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+
+
+fanshuf60@163.com,fanshuf61@163.com,fanshuf62@163.com,zqiang33@163.com

@@ -1,0 +1,20 @@
+var person = {firstname: 'Bill', lastname: 'gates', id: 5566}
+
+
+person=new Object();
+person.firstname="Bill";
+person.lastname="Gates";
+person.age=56;
+person.eyecolor="blue";
+
+<script>
+    var oo = new Object()
+    oo.name = 'guodong'
+    oo.val = 'beauty'
+    oo.personality = 'nice'
+    console.log(oo)
+    for (x in oo) {
+        console.log(x)
+        console.log(oo[x])
+    }
+</script>

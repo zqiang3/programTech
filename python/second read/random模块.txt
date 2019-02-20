@@ -1,0 +1,23 @@
+https://docs.python.org/2/library/random.html
+
+# random.random()
+返回一个随机数 范围[0.0, 1.0)
+
+random.randint(a, b)  # a < b
+return a random integer N such that a <= N <= b
+
+random.choice(seq)
+return a random element from the non-empty sequence seq
+
+random.uniform(a, b)
+生成一个指定范围的随机浮点数，两个参数其中一个是上限，一个是下限。如果a>b，则生成：a<=n<=b；如果a<b，则b<=n<=a
+
+random.shuffle(x[, random])  # x必须是列表，因为要进行赋值
+用于将一个列表中的元素打乱
+
+random.sample(seq, k)
+从指定序列中随机获取指定长度的片断，sample函数不会改变原有序列
+
+random.randrange([start], stop[, step])  start <= N < stop
+random.randrange(10, 100, 2)
+相当于random.choice(range(10, 100, 2))

@@ -1,0 +1,11 @@
+# Éú³É¿ò¼Ü
+django-admin.py startproject p_name
+python manage.py startapp app_name
+
+
+# ÅäÖÃ
+settings.py
+
+INSTALLED_APPS
+
+DATABASES

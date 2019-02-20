@@ -1,0 +1,8 @@
+python manage.py makemigrations polls
+makemigrations 告诉django变动了数据模型，保存在一个migration里面
+
+python manage.py sqlmigrate polls 0001
+sqlmigrate并不真正地建立数据表结构，只是将sql语句打印出来。
+
+python manage.py migrate
+在数据库建立相应的表。

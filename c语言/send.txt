@@ -1,0 +1,4 @@
+int send(int s, const void *msg, int len, unsigned int flags)
+
+返回值
+成功返回实际传送出去的字符数，失败返回-1，错误原因存于errno

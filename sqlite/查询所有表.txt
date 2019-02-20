@@ -1,0 +1,1 @@
+res = cursor.execute("select name from sqlite_master where type='table' order by name").fetchall()

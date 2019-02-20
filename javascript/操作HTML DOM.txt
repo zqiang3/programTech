@@ -1,0 +1,10 @@
+# 改变HTML内容
+document.getElementById(id).innerHTML = new HTML
+
+# 改变HTML属性
+document.getElementById(id).attribute = new value
+
+
+# 改变HTML元素的样式
+document.getElementById(id).style.property = new style
+

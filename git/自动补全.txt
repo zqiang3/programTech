@@ -1,0 +1,5 @@
+githubµÿ÷∑£∫https://github.com/markgandolfo/git-bash-completion.git
+
+Simply copy git-completion.bash into /etc/bash_completion.d/
+That should run automatically.. if not, in your .bashrc file add the following line
+. /etc/bash_completion.d/git-completion.bash

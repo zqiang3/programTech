@@ -1,0 +1,40 @@
+Document类有objects属性，可用来存取数据库中的数据，objects实际上是一个QuerySetManager，返回一个QuerySet对象，可用来迭代取得数据库中的数据。
+
+
+from mongoengine import *
+
+class Categories(Document):
+	name = StringField(max_length=30, required=True)
+	num = IntField(default=0, required=True)
+	data = DateTimeField(default=datetime.now(), required=True)
+
+cate = Categories(name='linux')
+cate.save()  # 保存到数据库
+
+
+# 查询
+文档类有一个 objects 属性.我们使用它来查询数据库.
+cate = Categories.objects.all()
+
+cate = Categories.objects(name='Python')
+cate.name = 'LinuxZen'
+cate.update()
+
+
+# 数组
+默认查询数组"="代表的意思是in:
+class Posts(Document):
+	name = StringField(max_length=30, required=True)
+	num = IntField(default=0, required=True)
+	data = DateTimeField(default=datetime.now(), required=True)
+	tags = ListField(StringField(max_length=20, requied=True), required=True)
+
+Posts.objects(tags='coding')
+
+
+# 时间段查询
+articles = Posts.objects(date__gte=start, date__lt=end).order_by('-date')
+
+# 排序
+order_ty
+

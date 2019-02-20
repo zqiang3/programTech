@@ -1,0 +1,1 @@
+当客户端保持着与服务器端的连接，这时服务器端断开，再开启服务器时会出现： Address already in use。可以用netstat -anp | more 可以看到客户端还保持着与服务器的连接(还在使用服务器bind的端口)。这是由于client没有执行close，连接还会等待client的FIN包一段时间。解决方法是使用setsockopt,使得socket可以被重用，是最常用的服务器编程要点。具体的做法为是，在socket调用和bind调用之间加上一段对socket的设置： int opt = 1;  setsockopt(socket_fd,SOL_SOCKET,SO_REUSEADDR,&opt,sizeof(opt))

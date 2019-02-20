@@ -1,0 +1,9 @@
+git仓库就是那个.git目录，其中存放的就是我们提交的文档内容，git可基于文档索引对其所管理的文档进行追踪。
+
+# 配置
+git config --global user.name "your name"
+git config --global user.email "your email"
+
+
+# 忽略机制
+工作目录中有一些文件是不希望接受管理的，比如生成的临时文件等。可将工作目录不希望接受管理的文档写到同一目录的.gitignore文件中

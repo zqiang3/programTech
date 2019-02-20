@@ -1,0 +1,29 @@
+virtualenv
+virtualenv用于创建独立的python环境
+安装
+sudo apt-get 
+创建虚拟环境
+virtualenv ENV
+如果不想使用系统环境中的site packages，加上参数--no-site-packages建立虚拟环境
+virtualenv --no-site-packages 虚拟环境名称
+
+-----------------------------------------------------------------------------
+
+Virtualenvwrapper
+是virtualenv的扩展包，可更方便地管理虚拟环境
+sudo pip install virtualenvwrapper
+mkdir $HOME/.virtualenvs
+在~/.bashrc中添加export WORKON_HOME=$HOME/.virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh
+运行source ~/.bashrc
+
+列出虚拟环境列表
+workon或lsvirtualenv
+新建虚拟环境mkvirtualenv
+workon 虚拟环境名称
+rmvirtualenv 虚拟环境名称
+deactivate
+
+
+创建python3的虚拟环境
+mkvirtualenv -p /usr/bin/python3 en3

@@ -1,0 +1,11 @@
+首先当然要夸一下神器 Sublime Text 2，自从第一次用我就彻底把神马 Notepad++ 和 TextMate 打入冷宫，用来开发 WEB 项目从此 IDE 都不需要了！
+
+下面讲讲如何自动开启换行功能，当一行代码太长时，Sublime Text 2 默认并不会自动开启换行，你必须从 View->Word Wrap 开启，虽然只有一步但是能从简就从简。
+
+解决方法是：
+
+打开 Preferences -> Setting - User
+添加如下内容即可：
+
+{ "word_wrap" : true }
+下一步计划认真学习 Markdown，重新写一个自己博客，用 Git 发布~

@@ -1,0 +1,5 @@
+sudo apt-get install python-pip python-dev build-essential
+
+安装mysql扩展包
+sudo pip install mysql-python
+安装其他包只要pip+包的名字

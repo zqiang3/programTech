@@ -1,0 +1,49 @@
+# 遍历祖先
+
+parent()
+
+例：把父元素颜色属性设为红色
+<script>
+    $(document).ready(function () {
+        $("span").parent().css({"color": "red"});
+    })
+</script>
+
+
+
+parents()
+$("span").parents().css({"color": "red"});
+
+
+也可以使用可选参数来过滤对祖先元素的搜索
+$("span").parents("ul");
+
+
+parentsUntil()
+返回介于两个给定元素之间的所有祖先元素
+
+
+# 遍历后台
+children()
+find()
+
+find("*") 所有后代
+
+
+# 同胞遍历
+siblings()
+next()
+nextAll()
+nextUntil()
+prev()
+prevAll()
+preUntil()
+
+
+# 过滤方法
+三个最基本的过滤方法是first() last() eq()
+eq() 返回指定索引号的元素，索引号从0开始
+
+find() not()
+filter(".intro") 不匹配的元素从集合中删除
+not 与 filter恰好相反

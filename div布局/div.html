@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>div+css</title>
+
+    <script>
+        a = [{
+            name: 'name',
+            age: 12
+        }]
+        console.log(a)
+    </script>
+
+    <style>
+        #container {
+            width: 1000px;
+            margin: 0 auto;
+            background: #CF3;
+        }
+
+        #header {
+            height: 80px;
+            background: #093;
+        }
+
+        #logo {
+            padding-left: 50px;
+            padding-top: 20px;
+            padding-bottom: 50px;
+        }
+
+        #content {
+            height: 600px;
+            margin-top: 20px;
+            background: #0FF;
+        }
+
+        #content-left {
+            height: 400px;
+            width: 200px;
+            margin: 20px;
+            float: left;
+            background: #90C;
+        }
+
+        #content-main {
+            height: 400px;
+            width: 720px;
+            margin: 20px;
+            float: left;
+            background: #90C;
+        }
+
+        #footer {
+            height: 40px;
+            background: #90C;
+            margin-top: 20px;
+
+        }
+
+        .clear {
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+<div id="container">
+    <div id="header">
+        <div id="logo">log usage</div>
+    </div>
+
+    <div id="content">
+        <div id="content-left">content-left</div>
+        <div id="content-main">content-main</div>
+    </div>
+
+    <div class="clear">clear float</div>
+
+    <div id="footer">footer</div>
+</div>
+</body>
+</html>

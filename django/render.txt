@@ -1,0 +1,12 @@
+The render() function takes the request object as its first argument, a template name as its second argument and dictionary as its optional thid argument. It returns an HttpResponse object of the given template rendered with the given context.
+
+=======================================================
+from django.shortcuts import render
+
+from polls.models import Question
+
+
+def index(request):
+    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    context = {'latest_question_list': latest_question_list}
+    return render(request, 'polls/index.html', context)

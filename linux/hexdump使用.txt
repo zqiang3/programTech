@@ -1,0 +1,144 @@
+见csdn收藏
+－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
+
+hexdump命令是Linux下的打印16进制的利器，它可以按我们指定的格式输出16进制，特别有用，配合eeprom来用简直是绝配。
+今天我们来介绍一个hexdump命令的使用：
+
+首先我们准备一个测试用的文件test，十六进制如下：
+[plain] view plaincopy
+00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F  
+10 11 12 13 14 15 16 17 18 19 1A 1B 1C 1D 1E 1F  
+20 21 22 23 24 25 26 27 28 29 2A 2B 2C 2D 2E 2F  
+[plain] view plaincopy
+00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F  
+10 11 12 13 14 15 16 17 18 19 1A 1B 1C 1D 1E 1F  
+20 21 22 23 24 25 26 27 28 29 2A 2B 2C 2D 2E 2F  
+
+
+选项：
+
+-n length
+只格式化输入文件的前length个字节
+
+
+-C 输出十六进制和对应字符
+输入：
+[plain] view plaincopy
+hexdump -n 13 -C test  
+[plain] view plaincopy
+hexdump -n 13 -C test  
+输出：
+[plain] view plaincopy
+00000000  00 01 02 03 04 05 06 07  08 09 0a 0b 0c           |.............|  
+0000000d  
+[plain] view plaincopy
+00000000  00 01 02 03 04 05 06 07  08 09 0a 0b 0c           |.............|  
+0000000d  
+
+
+
+-s 从偏移量开始输出
+输入：
+[plain] view plaincopy
+hexdump -n 13 -C -s 30 test  
+[plain] view plaincopy
+hexdump -n 13 -C -s 30 test  
+输出：
+[plain] view plaincopy
+0000001e  1e 1f 20 21 22 23 24 25  26 27 28 29 2a           |.. !"#$%&'()*|  
+0000002b  
+[plain] view plaincopy
+0000001e  1e 1f 20 21 22 23 24 25  26 27 28 29 2a           |.. !"#$%&'()*|  
+0000002b  
+
+
+
+hexdump高级用法：
+
+-e 指定格式字符串，格式字符串包含在一对单引号中，格式字符串形如：
+'a/b "format1" "format2"'
+
+每个格式字符串由三部分组成，每个由空格分隔，第一个形如a/b，b表示对每b个输入字节应用format1格式，a表示对每a个输入字节应用format2格式，一般a>b，且b只能为1，2，4，另外a可以省略，省略则a=1。format1和format2中可以使用类似printf的格式字符串，如：
+%02d：两位十进制
+%03x：三位十六进制
+%02o：两位八进制
+%c：单个字符等
+
+还有一些特殊的用法：
+%_ad：标记下一个输出字节的序号，用十进制表示
+%_ax：标记下一个输出字节的序号，用十六进制表示
+%_ao：标记下一个输出字节的序号，用八进制表示
+%_p：对不能以常规字符显示的用.代替
+同一行如果要显示多个格式字符串，则可以跟多个-e选项
+
+
+例1：
+输入：
+[plain] view plaincopy
+hexdump -e '16/1 "%02X " "  |  "' -e '16/1 "%_p" "\n"' test  
+[plain] view plaincopy
+hexdump -e '16/1 "%02X " "  |  "' -e '16/1 "%_p" "\n"' test  
+输出：
+[plain] view plaincopy
+00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F  |  ................  
+10 11 12 13 14 15 16 17 18 19 1A 1B 1C 1D 1E 1F  |  ................  
+20 21 22 23 24 25 26 27 28 29 2A 2B 2C 2D 2E 2F  |   !"#$%&'()*+,-./  
+[plain] view plaincopy
+00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F  |  ................  
+10 11 12 13 14 15 16 17 18 19 1A 1B 1C 1D 1E 1F  |  ................  
+20 21 22 23 24 25 26 27 28 29 2A 2B 2C 2D 2E 2F  |   !"#$%&'()*+,-./  
+
+
+
+例2：
+输入：
+[plain] view plaincopy
+hexdump -e '1/1 "0x%08_ax "' -e '8/1 "%02X " " *  "' -e '8/1 "%_p" "\n"' test  
+[plain] view plaincopy
+hexdump -e '1/1 "0x%08_ax "' -e '8/1 "%02X " " *  "' -e '8/1 "%_p" "\n"' test  
+输出：
+[plain] view plaincopy
+0x00000000 00 01 02 03 04 05 06 07 *  ........  
+0x00000008 08 09 0A 0B 0C 0D 0E 0F *  ........  
+0x00000010 10 11 12 13 14 15 16 17 *  ........  
+0x00000018 18 19 1A 1B 1C 1D 1E 1F *  ........  
+0x00000020 20 21 22 23 24 25 26 27 *   !"#$%&'  
+0x00000028 28 29 2A 2B 2C 2D 2E 2F *  ()*+,-./  
+[plain] view plaincopy
+0x00000000 00 01 02 03 04 05 06 07 *  ........  
+0x00000008 08 09 0A 0B 0C 0D 0E 0F *  ........  
+0x00000010 10 11 12 13 14 15 16 17 *  ........  
+0x00000018 18 19 1A 1B 1C 1D 1E 1F *  ........  
+0x00000020 20 21 22 23 24 25 26 27 *   !"#$%&'  
+0x00000028 28 29 2A 2B 2C 2D 2E 2F *  ()*+,-./  
+
+
+
+例3：
+输入：
+[plain] view plaincopy
+hexdump -e '1/1 "%02_ad#    "' -e '/1 "hex = %02X * "' -e '/1 "dec = %03d | "' -e '/1 "oct = %03o"' -e '/1 " \_\n"' -n 20 test  
+[plain] view plaincopy
+hexdump -e '1/1 "%02_ad#    "' -e '/1 "hex = %02X * "' -e '/1 "dec = %03d | "' -e '/1 "oct = %03o"' -e '/1 " \_\n"' -n 20 test  
+输出：
+[plain] view plaincopy
+00#    hex = 00 * dec = 000 | oct = 000 _  
+01#    hex = 01 * dec = 001 | oct = 001 _  
+02#    hex = 02 * dec = 002 | oct = 002 _  
+03#    hex = 03 * dec = 003 | oct = 003 _  
+04#    hex = 04 * dec = 004 | oct = 004 _  
+05#    hex = 05 * dec = 005 | oct = 005 _  
+06#    hex = 06 * dec = 006 | oct = 006 _  
+07#    hex = 07 * dec = 007 | oct = 007 _  
+08#    hex = 08 * dec = 008 | oct = 010 _  
+09#    hex = 09 * dec = 009 | oct = 011 _  
+10#    hex = 0A * dec = 010 | oct = 012 _  
+11#    hex = 0B * dec = 011 | oct = 013 _  
+12#    hex = 0C * dec = 012 | oct = 014 _  
+13#    hex = 0D * dec = 013 | oct = 015 _  
+14#    hex = 0E * dec = 014 | oct = 016 _  
+15#    hex = 0F * dec = 015 | oct = 017 _  
+16#    hex = 10 * dec = 016 | oct = 020 _  
+17#    hex = 11 * dec = 017 | oct = 021 _  
+18#    hex = 12 * dec = 018 | oct = 022 _  
+19#    hex = 13 * dec = 019 | oct = 023 _  

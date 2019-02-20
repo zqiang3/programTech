@@ -1,0 +1,8 @@
+form
+A MultiDict with the parsed form data from POST or PUT requests. Please keep in mind that file uploads will not end up here, but instead in the files attribute.
+
+args
+A MultiDict with the parsed contents of the query string. (The part in the URL after the question mark).
+
+values
+A CombinedMultiDict with the contents of both form and args.

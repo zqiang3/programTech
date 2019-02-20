@@ -1,0 +1,20 @@
+export HISTTIMEFORMAT='%F %T'
+
+# 执行上一条命令
+!!
+!-1
+Ctrl+P
+
+Ctrl+R 搜索命令
+
+# 清除
+history -c
+
+# 文件
+.bash_history
+
+export HISTTIMEFORMAT='%F %T '
+export HISTSIZE=1000
+export HISTFILESIZE=1000
+export HISTCONTROL=erasedups  # 清除整个命令历史中的重复条目
+export HISTCONTROL=ignorespace  # 忽略记录空格开始的命令

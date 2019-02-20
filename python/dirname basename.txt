@@ -1,0 +1,22 @@
+(1).当"print os.path.dirname(__file__)"所在脚本是以完整路径被运行的， 那么将输出该脚本所在的完整路径，比如：
+
+             python d:/pythonSrc/test/test.py
+
+             那么将输出 d:/pythonSrc/test
+
+     (2).当"print os.path.dirname(__file__)"所在脚本是以相对路径被运行的， 那么将输出空目录，比如：
+
+             python test.py
+
+             那么将输出空字符串
+
+# ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
+返回path最后的文件名。如何path以／或\结尾，那么就会返回空值。即os.path.split(path)的第二个元素。
+
+>>> os.path.basename('c:\\test.csv')   
+'test.csv'   
+>>> os.path.basename('c:\\csv')   
+'csv' （这里csv被当作文件名处理了）   
+>>> os.path.basename('c:\\csv\\')   
+''   

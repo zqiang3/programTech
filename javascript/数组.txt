@@ -1,0 +1,9 @@
+var cars = new Array()
+cars[0] = 'audo'
+cars[1] = 'bmw'
+
+
+或者 var cars=new Array("Audi","BMW","Volvo")
+
+# 数组的长度
+arr.length

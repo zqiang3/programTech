@@ -1,0 +1,3 @@
+代码修改后可自动加载
+app.debug = True
+app.run(debug=True)

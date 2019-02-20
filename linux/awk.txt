@@ -1,0 +1,44 @@
+http://www.cnblogs.com/ggjucheng/archive/2013/01/13/2858470.html
+
+$0 表示一整行内容 $1表示第一列
+
+awk是一个强大的文本分析工具
+awk将文件逐行读入，以空格为默认分隔符进行切片，将切开的部分再进行各种分析处理。
+
+# 使用方法
+awk '{pattern + action}' {filenames}
+也可以只匹配pattern，没有指定action时默认输出每行内容
+
+awk [-F field-separator] 'commands' input-file(s)
+
+# 示例
+last -n 5 <==仅取出前五行
+
+#last -n 5 | awk  '{print $1}'
+
+#cat /etc/passwd |awk  -F ':'  '{print $1}' 
+
+#cat /etc/passwd |awk  -F ':'  '{print $1"\t"$7}' 
+
+cat /etc/passwd |awk  -F ':'  'BEGIN {print "name,shell"}  {print $1","$7} END {print "blue,/bin/nosh"}'
+
+
+# print和printf
+awk中同时提供了print和printf两种打印输出的函数。
+
+其中print函数的参数可以是变量、数值或者字符串。字符串必须用双引号引用，参数用逗号分隔。如果没有逗号，参数就串联在一起而无法区分。这里，逗号的作用与输出文件的分隔符的作用是一样的，只是后者是空格而已。
+
+printf函数，其用法和c语言中printf基本相似,可以格式化字符串,输出复杂时，printf更加好用，代码更易懂。
+
+# 内置变量
+ARGC               命令行参数个数
+ARGV               命令行参数排列
+ENVIRON            支持队列中系统环境变量的使用
+FILENAME           awk浏览的文件名
+FNR                浏览文件的记录数
+FS                 设置输入域分隔符，等价于命令行 -F选项
+NF                 浏览记录的域的个数
+NR                 已读的记录数
+OFS                输出域分隔符
+ORS                输出记录分隔符
+RS                 控制记录分隔符

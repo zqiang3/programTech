@@ -1,0 +1,1 @@
+coll.drop() # delete table

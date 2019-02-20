@@ -1,0 +1,5 @@
+sys.argv
+os_type = sys.platform
+sys.exit(0)
+sys.path.append
+sys.stdin, sys.stdout, sys.stderr

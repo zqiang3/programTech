@@ -1,0 +1,108 @@
+tmux new -s roc
+aj c # 新窗口
+
+aj d # 退出
+
+tmux ls
+tmux a -t roc
+
+
+# ====================================================
+
+tmux基本使用 
+    tmux是一个优秀的终端复用软件，即使非正常掉线，也能保证当前的任务运行，这一点对于远程SSH访问特别有用，网络不好的情况下仍然能保证工作现场不丢失! 
+    tmux完全使用键盘控制窗口，实现窗口的切换，像是Chrome的方式管理shell，使用起来很方便，byubo也有同样的功能。 
+    tmux命令都具有一个前缀命令(PREFIX)，默认的是CTRL+b，可以自己修改，改为CTRL+a。 
+在~/.tmux.conf中加入如下行，没有~/.tmux.conf文件自己建立一个即可。 
+set -g prefix C-a 
+unbind C-b 
+此时并没有生效，重启tmux或者在命令模式（按PREFIX : )输入 
+source-file ~/.tmux.conf 
+任何命令前都需要CTRL+a，然后再按其他的键发出具体的操作命令，更多命令请看tmux参考手册 
+
+1 建立命名会话 
+Shell代码  收藏代码
+# tmux new -s session  
+进入tmux。 
+PREFIX c 创建新的窗口 
+PREFIX d 退出tmux窗口，tmux仍在后台运行，可以通过tmux attach进入到指定的会话 
+
+# tmux new -s session -d #在后台建立会话 
+# tmux ls #列出会话 
+# tmux attach -t session #进入某个会话 
+
+2 复制模式copy-mode 
+a.PREFIX [ 进入复制模式 
+b.按 space 开始复制，移动光标选择复制区域 
+c.按 Enter 复制并退出copy-mode。 
+d.将光标移动到指定位置，按 PREIFX ] 粘贴 
+如果不在配置文件中进行如下配置，在VIM中复制模式无法完成操作 
+在~/.tmux.conf中加入如下行 
+setw -g mode-keys vi 
+
+3 Remaping key 
+讲Caps Lock键映射为Ctrl，更改键映射后反而有点不习惯，就用默认的键盘控制也很方便，习惯就好。 
+windows环境下载安装AUTOHOTKEY,修改AutoHotKey.ahk文件为 
+Autohotkey.ahk代码  收藏代码
+;;; Default script settings  
+#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.  
+SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.  
+SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.  
+;;; Remap CapsLock to Control. Move CapsLock to Right Control.  
+CapsLock::Control  
+RControl::CapsLock  
+运行AutoHotKey，如已运行可以reload。更多修改CapsLock到CTRL的方法，请参考文章MovingTheCtrlKey 
+
+4 配置 
+~/.tmux.conf代码  收藏代码
+#设置PREFIX为Ctrl-a  
+set -g prefix C-a  
+#解除Ctrl-b与PREFIX的对应关系  
+unbind C-b  
+#copy-mode将快捷键设置为vi模式  
+setw -g mode-keys vi  
+#将r键设置为加载配置文件，并显示"reloaded!"信息  
+bind r source-file ~/.tmux.conf \; display "Reloaded!"  
+#设置终端颜色为256色  
+set -g default-terminal "screen-256color"  
+#开启status-bar uft-8支持  
+set -g status-utf8 on  
+#设置pan前景色  
+set -g pane-border-fg green  
+#设置pane背景色  
+set -g pane-border-bg black  
+#设置活跃pane前景色  
+set -g pane-active-border-fg white  
+#设置活跃pane背景色  
+set -g pane-active-border-bg yellow  
+#设置消息前景色  
+set -g message-fg white  
+#设置消息背景色  
+set -g message-bg black  
+#设置消息高亮显示  
+set -g message-attr bright  
+#设置status-bar颜色  
+set -g status-fg white  
+set -g status-bg black  
+#设置窗口列表颜色  
+setw -g window-status-fg cyan  
+setw -g window-status-bg default  
+setw -g window-status-attr dim  
+#设置当前窗口在status bar中的颜色  
+setw -g window-status-current-fg white  
+setw -g window-status-current-bg red  
+setw -g window-status-current-attr bright  
+#设置status bar格式  
+set -g status-left-length 40  
+set -g status-left "#[fg=green]Session: #S #[fg=yellow]#I #[fg=cyan]#P"  
+set -g status-right "#[fg=cyan]%d %b %R"  
+set -g status-interval 60  
+set -g status-justify centre  
+#开启window事件提示  
+setw -g monitor-activity on  
+set -g visual-activity on  
+
+
+5 滚屏 
+    滚屏要进入copy-mode，即PREFIX+[，然后就可以用上下键来滚动屏幕，配置了vi快捷键模式，就可以像操作vi一样来滚动屏幕，非常的方便。 
+    退出直接按‘q’键即可。

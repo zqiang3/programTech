@@ -1,0 +1,40 @@
+pyqt4.5引入了新的api用于信号和槽
+button.clicked.connect(self.onClicked)
+
+示例：
+from PyQt4.QtGui import *
+from PyQt4 import QtCore
+import sys
+
+
+class Test(QWidget):
+    def __init__(self):
+        super(Test, self).__init__()
+        self.initUI()
+
+    def initUI(self):
+        lcd = QLCDNumber(self)
+        sld = QSlider(QtCore.Qt.Horizontal, self)
+        vbox = QVBoxLayout()
+        vbox.addWidget(lcd)
+        vbox.addWidget(sld)
+        self.setLayout(vbox)
+        sld.valueChanged.connect(lcd.display)
+        self.setGeometry(300, 300, 250, 150)
+        self.setWindowTitle('signal & slot')
+        self.show()
+
+    # 重写键盘事件处理函数
+    def keyPressEvent(self, e):
+        if e.key() == QtCore.Qt.Key_Escape:
+            self.close()
+
+
+def main():
+    app = QApplication(sys.argv)
+    test = Test()
+    sys.exit(app.exec_())
+
+
+if __name__ == '__main__':
+    main()

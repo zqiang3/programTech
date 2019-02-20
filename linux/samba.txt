@@ -1,0 +1,19 @@
+重启
+
+service samba restart
+
+
+配置文件写法
+[work]
+    path = /home/zq/work
+    writeable = yes
+    printable = no
+    valid users = zq
+    browseable = yes
+    guest ok = yes
+    create mask = 0644
+    directory mask = 0755
+    available = yes
+
+
+  

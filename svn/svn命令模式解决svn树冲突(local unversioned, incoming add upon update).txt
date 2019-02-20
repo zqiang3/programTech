@@ -1,0 +1,36 @@
+当工作目录修改删除过时更新使用svn更新就容易发生树冲突“Tree Confilict”.会出现类似提示。
+local unversioned, incoming add upon update如果使用图形化客户端可以通过对比文件和解决冲突按钮进行解决，
+如果是使用命令行的，
+情况类似如下：（其中 removed_directory 是你工作的某个目录）
+
+$svn status
+D     C removed_directory
+>   local unversioned, incoming add upon update
+Summary of conflicts:
+Tree conflicts:
+
+
+－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
+$ svn resolve --accept working removed_directory
+Resolved conflicted state of 'removed_directory'
+$ svn revert removed_directory
+Reverted 'removed_directory'
+$ svn status
+$
+
+
+基本格式 : 
+*　　*　　*　　*　　*　　command 
+分　时　日　月　周　命令 
+
+第1列表示分钟1～59 每分钟用*或者 */1表示 
+第2列表示小时1～23（0表示0点） 
+第3列表示日期1～31 
+第4列表示月份1～12 
+第5列标识号星期0～6（0表示星期天） 
+第6列要运行的命令
+
+
+url=http://mccadmin.cc.163.com/box/config?source=41193
+
+http://mmonitor.cc.163.com/admin/ignore/set?id=http_failed&type=filter&cond=url=http://mccadmin.cc.163.com/box/config&desc=xxx&name=httpfail_mccadmin_box

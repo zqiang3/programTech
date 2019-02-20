@@ -1,0 +1,2 @@
+个人理解：apache的工作模式就是apache在运行时候的内存分配，进程和线程的使用方式。
+apache的工作模式有：beos，event，worker，prefork，mpmt_os2

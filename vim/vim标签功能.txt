@@ -1,0 +1,8 @@
+建立新标签
+tabnew filename
+
+在标签之间跳来跳去
+使用 ":tabp" 与 ":tabn" 可分别实现在一组标签页中向前或向后切换当前标签页，但是这样太繁琐了，为了将当前标签页切换到相邻的标签页需要摁 7 次键。利用 Vim 提供的键映射功能，可将 ":tabp" 与 ":tabn" 命令映射到你喜欢的快捷键上。我热衷于将 ":tabp" 映射为 "Shift + Left" 组合键，将 ":tabn" 映射为 "Shift + Right" 组合键，做法是编辑 $HOME/.vimrc，添加：
+" shift tab pages
+map <S+Left> :tabp<CR>
+map :tabn

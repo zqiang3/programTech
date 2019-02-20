@@ -1,0 +1,108 @@
+
+
+def deco(func):
+    print("before myfunc() called.")
+    func()
+    print("  after myfunc() called.")
+    return func
+ 
+@deco
+def myfunc():
+    print(" myfunc() called.")
+ 
+myfunc()
+myfunc()
+
+# 加装饰符@处已经将装饰过程执行了一遍
+－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
+def deco(func):
+    def _deco():
+        print("before myfunc() called.")
+        func()
+        print("  after myfunc() called.")
+        # 不需要返回func，实际上应返回原函数的返回值
+    return _deco
+ 
+@deco
+def myfunc():
+    print(" myfunc() called.")
+    return 'ok'
+ 
+myfunc()
+myfunc()
+
+# 内嵌包装函数的形参和返回值与原函数相同，装饰函数返回内嵌包装函数对象
+
+－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
+def loginFilter(func):
+    @functools.wraps(func)
+    def wrapper(req, *args, **kwargs):
+        redisClient = utils.get_reids_client()
+        try:
+            username = cachelogic.get_user_name(redisClient, req.remote_addr)
+            if not username:
+                return ResponseRedirect('/sshow/login/')
+            res = func(req, *args, **kwargs)
+            return res
+        except Exception, ex:
+            Log.error('%s' % ex)
+    return wrapper
+
+
+
+闭包
+## sample
+def wrapper():
+    alist = range(1, 101)
+    def lazy_sum():
+        return reduce(lambda x, y: x+y, alist)
+    return lazy_sum
+
+lazy_sum = wrapper()        #wrapper() 返回的是lazy_sum函数对象
+
+if __name__  == "__main__":
+    lazy_sum()           #5050
+这是一个典型的Lazy Evaluation的例子。我们知道，一般情况下，局部变量在函数返回时，就会被垃圾回收器回收，而不能再被使用。但是这里的alist却没有，它随着lazy_sum函数对象的返回被一并返回了(这个说法不准确，实际是包含在了lazy_sum的执行环境中，通过__globals__)，从而延长了生命周期。
+
+
+有人觉得add = checkParams(add)这样的写法未免太过麻烦，于是python提供了一种更优雅的写法，被称为语法糖：
+@checkParams
+def add(a, b):
+    return a + b
+这只是一种写法上的优化，解释器仍然会将它转化为add = checkParams(add)来执行。
+
+
+####################################################
+再来一个例子
+#-*- encoding=utf-8 -*-
+from functools import wraps
+
+def task_logging(taskname):
+    def func_wrapper(func):
+        @wraps(func)
+        def return_wrapper(*args, **wkargs):
+            # 函数通过装饰起参数给装饰器传送参数
+            print 'before task',taskname
+            # 装饰器传变量给函数
+            taskid = 1
+            summer, funcres = func(taskid, *args, **wkargs)
+            print 'after task', taskid, summer 
+            return funcres
+        return return_wrapper
+    return func_wrapper
+
+@task_logging("test")
+def testd(taskid):
+    print "testd runing",taskid
+    return "task summer success eg", []
+
+print testd()
+
+由上面这段代码中的最后两个例子可知：当装饰器有参数时，即使你启用装饰器的默认参数，不另外传递新值进去，也必须有一对括号，否则编译器会直接将func传递给test()，而不是传递给_test()
+
+
+总结：【1】@decorator后面不带括号时（也即装饰器无参数时），效果就相当于先定义func或cls，而后执行赋值操作func=decorator(func)或cls=decorator(cls)；
+【2】@decorator后面带括号时（也即装饰器有参数时），效果就相当于先定义func或cls，而后执行赋值操作 func=decorator(decoratorArgs)(func)或cls=decorator(decoratorArgs)(cls)；
+【3】如上将func或cls重新赋值后，此时的func或cls也不再是原来定义时的func或cls，而是一个可执行体，你只需要传入参数就可调用，func(args)=>返回值或者输出，cls(args)=>object of cls；
+【4】最后通过赋值返回的执行体是多样的，可以是闭包，也可以是外部函数；当被装饰的是一个类时，还可以是类内部方法，函数；
+【5】另外要想真正了解装饰器，一定要了解func.func_code.co_varnames,func.func_defaults，通过它们你可以以func的定义之外，还原func的参数列表；另外关键字参数是因为调用而出现的，而不是因为func的定义，func的定义中的用等号连接的只是有默认值的参数，它们并不一定会成为关键字参数，因为你仍然可以按照位置来传递它们。

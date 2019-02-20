@@ -1,0 +1,6 @@
+django-admin.py startproject p_name
+python manage.py startapp app_name
+
+python manage.py sqlall module_name # 生成sql语句
+python manage.py syncdb # 执行sql语句
+python manage.py dbshell

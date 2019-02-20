@@ -1,0 +1,1 @@
+TEMPLATES_DIRS 在1.8被废除，改为设置DjangoTemplates的DIRS选项，DIRS是一个列表

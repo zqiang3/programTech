@@ -1,0 +1,22 @@
+python中的赋值是按引用传递的
+如果要拷贝对象，需要用到python中的copy模块
+
+copy.copy 只拷贝父对象，不会拷贝父对象中的子对象
+copy.deepcopy 拷贝所有对象，包括父对象的子对象
+
+一个例子：
+import copy
+
+a = [1, 2, 3, 4, ['a', 'b']]
+b = a
+c = copy.copy(a)
+d = copy.deepcopy(a)
+
+print 'a:\t', id(a)
+print 'b=a:\t', id(b)
+print 'copy:\t', id(c)       # 浅复制，仅复制对象自身，而不会递归复制其成员
+print 'deepcopy:\t', id(d)   # 深度复制，会递归复制所有深度的成员
+
+print 'a[4]:\t', id(a[4])
+print 'copy, c[4]:\t', id(c[4])
+print 'deepcopy, d[4]:\t', id(d[4])

@@ -1,0 +1,1 @@
+执行test之前是会先执行compile的，执行package之前是会先执行test的，执行install之前会先执行package。

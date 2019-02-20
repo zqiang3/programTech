@@ -1,0 +1,8 @@
+Á¬½Ómongo
+mongo host:port/dbName -u uName -p pwd
+
+mongo 192.168.229.149:30000/gamble -u gamble -p gamblepwd
+
+mongo 127.0.0.1:30000/cc_pt_app -upt_app_online -ppt_app_online
+
+`

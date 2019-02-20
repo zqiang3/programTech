@@ -1,0 +1,33 @@
+返回与给定服务名对应的包含名字和服务号信息的servent结构指针
+
+struct servent {
+char FAR *s s_name;
+char Far *FAR *s_aliases;
+short s_port;
+char FAR *s_proto;
+};
+
+s_port s_port 连接该服务时需要用到的端口号，返回的端口号是以网络字节顺序排列的。
+
+
+ex:
+#include "netdb.h"
+#include "stdio.h"
+int main()
+{
+        struct servent *se = NULL;
+        int i = 0;
+         
+        se = getservbyname("domain", "udp");
+        if (!se)         
+               return -1;  
+                      
+        printf("name : %s\n", se->s_name);
+        printf("port : %d\n", ntohs(se->s_port));
+        printf("proto : %s\n", se->s_proto);
+        for (i = 0; se->s_aliases[i]; i++)
+            printf("aliases : %s\n", se->s_aliases[i]);
+         
+        return 0;
+        
+}

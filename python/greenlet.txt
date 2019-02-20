@@ -1,0 +1,8 @@
+每个协程都有自己的私有stack及局部变量
+同一时间只有一个协程在运行，故无须对某些共享变量加锁
+协程之间的执行顺序，完全由程序来控制
+协程是运行在一个线程内的伪并发方式，最终只有一个协程在运行，然后程序来控制执行的顺序
+
+hub是线程局部类实例，即每个线程都有一个hub实现，用来管理该线程中的co-rountine的调度。你可以为每个线程选用合适的hub（这样很麻烦，通常是：你为主线程选用一个hub,其他线程使用默认的hub）
+
+hub工作原理：hub自己有一个GreenLet,作为MainLoop.当某个运行中的coroutine需要IO操作时，则该co-routine在hub中注册一个监听器（hub知道何时该co-routine wake up）。如果有其他可运行的co-routine，则hub MainLoop 切换到这些co-routine(via get_hub().switch())。如果这些co-routime完成了或是也需要IO，则由切换到hub main Loop中。这样，保证每个co-rountine都能被调度。

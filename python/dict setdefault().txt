@@ -1,0 +1,2 @@
+dict.setdefault(key, default)
+如果键在字典中，返回这个键所对应的值。如果键不在字典中，向字典中插入这个键，并返回default

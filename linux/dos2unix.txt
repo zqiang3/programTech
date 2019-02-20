@@ -1,0 +1,9 @@
+×ª»»»»ÐÐ·û
+dos2unix
+unix2dos
+
+0a(ËõÐ´LF) »»ÐÐ·û
+0d(ËõÐ´CR)
+
+windows 0d0a
+unix 0a

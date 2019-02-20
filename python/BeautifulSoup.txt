@@ -1,0 +1,3 @@
+老版本用import BeautifulSoup
+
+4.3.2用import bs4

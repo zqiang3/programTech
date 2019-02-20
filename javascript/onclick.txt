@@ -1,0 +1,19 @@
+鼠标按下又放开
+
+onclick="JavaScriptCode" (可调用另一个函数)
+
+支持该事件的 HTML 标签：
+<a>, <address>, <area>, <b>, <bdo>, <big>, <blockquote>, <body>, <button>, 
+<caption>, <cite>, <code>, <dd>, <dfn>, <div>, <dl>, <dt>, <em>, <fieldset>, 
+<form>, <h1> to <h6>, <hr>, <i>, <img>, <input>, <kbd>, <label>, <legend>, 
+<li>, <map>, <object>, <ol>, <p>, <pre>, <samp>, <select>, <small>, <span>, 
+<strong>, <sub>, <sup>, <table>, <tbody>, <td>, <textarea>, <tfoot>, <th>, 
+<thead>, <tr>, <tt>, <ul>, <var>
+
+支持该事件的 JavaScript 对象：
+button, document, checkbox, link, radio, reset, submit
+
+
+HTML元素可直接使用事件属性
+也可通过JavaScript向HTML元素分配事件
+

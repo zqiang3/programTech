@@ -1,0 +1,1 @@
+res = mongodb[table_name].find(query).sort('minute', -1).limit(1)

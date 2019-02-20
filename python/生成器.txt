@@ -1,0 +1,64 @@
+可以用列表生成式生成一个列表，但如果列表的元素个数很多，比如，创建一个100万个元素的列表，就会占用很大的内存空间。
+如果列表元素可以根据某种算法推算出来，是否可以在循环的过程中不断推算出后续的元素呢，这样就不必创建出完整的列表，从而节省内存空间。
+在python中就有这样的机制，称为生成器。
+
+如何创建一个生成器，最简单的方法，把列表生成式的[]改为()
+
+newList = [x*x for x in range(10)]
+
+newGen = (x*x for x in range(10))
+
+print newList
+print newGen
+
+输出生成器的每个元素，可以不断调用next()方法，但常用的是使用for迭代
+
+
+生成fib数列
+fib数列可以用一个算法推算出来，就是后一个元素是由前两个元素相加得来
+
+def fib(max):
+    n, a, b = 0, 0, 1
+    while n < max:
+        print b
+        a, b = b, a + b
+        n += 1
+
+
+只要将print b改为yield b就将fib()函数变为一个生成器了
+
+
+def fib(max):
+    n, a, b = 0, 0, 1
+    while n < max:
+        yield b
+        a, b = b, a + b
+        n += 1
+
+print fib
+print fib(6)
+
+
+最难理解的就是generator和函数的执行流程不一样。函数是顺序执行，遇到return语句或者最后一行函数语句就返回。而变成generator的函数，在每次调用next()的时候执行，遇到yield语句返回，再次执行时从上次返回的yield语句处继续执行。
+
+odd不是普通函数，而是generator，在执行过程中，遇到yield就中断，下次又继续执行。执行3次yield后，已经没有yield可以执行了，所以，第4次调用next()就报错
+
+
+例子：
+def odd():
+    print 'step 1'
+    yield 1
+    print 'step 2'
+    yield 3
+    print 'step 3'
+    yield 5
+
+o = odd()
+
+print o.next()
+print o.next()
+print o.next()
+print o.next()
+
+for x in o:
+    print x

@@ -1,0 +1,41 @@
+基础语法是
+$(selector).action()
+
+示例
+$(this).hide() - 隐藏当前元素
+$("p").hide() - 隐藏所有段落
+$(".test").hide() - 隐藏所有 class="test" 的所有元素
+$("#test").hide() - 隐藏所有 id="test" 的元素
+提示：jQuery 使用的语法是 XPath 与 CSS 选择器语法的组合。
+
+
+# $(document).ready(function() {
+});
+
+
+# 元素选择器
+jQuery 元素选择器
+jQuery 使用 CSS 选择器来选取 HTML 元素。
+$("p") 选取 <p> 元素。
+$("p.intro") 选取所有 class="intro" 的 <p> 元素。
+$("p#demo") 选取所有 id="demo" 的 <p> 元素。
+
+
+# 属性选择器
+jQuery 属性选择器
+jQuery 使用 XPath 表达式来选择带有给定属性的元素。
+$("[href]") 选取所有带有 href 属性的元素。
+$("[href='#']") 选取所有带有 href 值等于 "#" 的元素。
+$("[href!='#']") 选取所有带有 href 值不等于 "#" 的元素。
+$("[href$='.jpg']") 选取所有 href 值以 ".jpg" 结尾的元素。
+
+更多的选择器实例
+语法	描述
+$(this)	当前 HTML 元素
+$("p")	所有 <p> 元素
+$("p.intro")	所有 class="intro" 的 <p> 元素
+$(".intro")	所有 class="intro" 的元素
+$("#intro")	id="intro" 的元素
+$("ul li:first")	每个 <ul> 的第一个 <li> 元素
+$("[href$='.jpg']")	所有带有以 ".jpg" 结尾的属性值的 href 属性
+$("div#intro .head")	id="intro" 的 <div> 元素中的所有 class="head" 的元素

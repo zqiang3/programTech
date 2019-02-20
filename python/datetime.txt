@@ -1,0 +1,28 @@
+datetime规定了最小、最大年份
+datetime.MINYEAR datetime.MAXYEAR  分别为1和9999
+
+datetime.date
+datetime.time
+datetime.datetime
+datetime.timedelta
+datetime.tzinfo
+
+
+# date
+date.max date.min
+date.fromtimestamp(ts)
+date.replace(year, month, day)
+date.timetuple()
+date.weekday()  星期一返回0 依次类推
+date.isoweekday()  星期一返回1 依次类推
+date.strftime(fmt)
+
+
+
+# datetime
+datetime.today()
+datetime.now([tz])
+datetime.utcnow()
+datetime.fromtimestamp(ts, [tz])
+datetime.utcfromtimestamp(ts)
+datetime.combine(date, time)

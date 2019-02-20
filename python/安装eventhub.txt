@@ -1,0 +1,1 @@
+pip install eventhub-python -i http://pypi.cc.163.com --trusted-host=pypi.cc.163.com
