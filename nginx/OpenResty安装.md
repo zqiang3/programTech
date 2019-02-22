@@ -19,3 +19,27 @@ make
 make install
 ```
 
+openresty默认安装在/usr/local/openresty目录下。
+
+**启动openresty**
+
+```bash
+/usr/local/openresty/nginx/sbin/nginx -p /home/www/ -c /home/www/conf/nginx.conf
+```
+
+## 嵌入lua脚本
+
+nginx 如何嵌入 lua 脚本。方法就是在nginx的配置文件nginx.conf 中使用 content_by_lua 或者 cotent_by_lua_file 指令
+
+1. content_by_lua 一般在很简单的lua脚本时使用
+
+```nginx
+location /lua {
+    set $test "hello, world";
+    content_by_lua '
+        ngx.header.content_type = "text/plain";
+    	nax.say(ngx.var.test);
+    ';
+}
+```
+

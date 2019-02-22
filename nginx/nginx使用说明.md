@@ -2,6 +2,27 @@
 
 ```bash
 apt-get install nginx
+
+# 安装Nginx所需的pcre库
+tar zxvf pcre-7.9.tar.gz
+cd pcre-7.9/
+./configure
+make && make install
+
+# 安装Nginx
+tar zxvf nginx-0.8.15.tar.gz
+cd nginx-0.8.15
+./configure --user=www --group=www --prefix=/usr/local/webserver/nginx --with-http_stub_status_module --with-http_ssl_module
+make && make install
+
+# 创建Nginx日志目录
+mkdir -p /data1/logs
+chmod +w /data1/logs
+chown -R www:www /data1/logs
+
+# 创建配置文件
+rm -f /usr/local/webserver/nginx/conf/nginx.conf
+vi /usr/local/webserver/nginx/conf/nginx.conf
 ```
 
 The following additional packages will be installed:
@@ -60,6 +81,14 @@ listener监听端口
 server_name监听域名
 
 location{}是用来为匹配的 URI 进行配置，URI 即语法中的“/uri/”。location  / { }匹配任何查询，因为所有请求都以 / 开头。
+
+**平滑变更Nginx的配置**
+
+```bash
+kill -HUP `cat /run/nginx.pid`
+```
+
+
 
 ## 转发HTTP请求
 
