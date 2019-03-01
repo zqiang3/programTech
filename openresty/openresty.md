@@ -29,6 +29,23 @@ Nginx 采用的是 master-worker 模型，一个 master 进程管理多个 worke
 
 在OpenResty中，每个worker使用一个LuaVM，当请求被分配
 
+## 安装部署
+
+You can add the `openresty` repository to your Debian system so as to easily install our packages and receive updates in the future (via the `apt-get update`command). To add the repository, just run the following commands (only need to run once for each system):
+
+```bash
+wget -qO - https://openresty.org/package/pubkey.gpg |  apt-key add -
+apt-get -y install software-properties-common
+add-apt-repository -y "deb http://openresty.org/package/debian $(lsb_release -sc) openresty"  
+apt-get update
+# 以上每个系统只需执行一次
+apt-get install openresty
+```
+
+## 安装目录
+
+/usr/local/openresty
+
 
 
 ## 用法

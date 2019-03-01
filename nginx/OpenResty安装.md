@@ -43,3 +43,16 @@ location /lua {
 }
 ```
 
+**执行阶段**
+
+```nginx
+ location /mixed {
+            set_by_lua $a 'ngx.log(ngx.ERR, "set_by_lua")';
+            rewrite_by_lua 'ngx.log(ngx.ERR, "rewrite_by_lua")';
+            access_by_lua 'ngx.log(ngx.ERR, "access_by_lua")';
+            header_filter_by_lua 'ngx.log(ngx.ERR, "body_filter_by_lua")';
+            log_by_lua 'ngx.log(ngx.ERR, "log_by_lua")';
+            content_by_lua 'ngx.log(ngx.ERR, "content_by_lu")';
+}
+```
+
