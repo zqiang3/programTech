@@ -1,9 +1,0 @@
-选择列表
-
-<select>
-	<option value="volvo">Volvo</option>
-	<option value="saab">Saab</option>
-</select>
-
-
-我在CC频道：http://cc.163.com/77/3676796/ ，倩女幽魂一起来玩吧！
