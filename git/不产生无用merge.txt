@@ -1,3 +1,0 @@
-5.不产生无用的merge的同步
-有这么一种情况，用一个分支专门同步代码提供商的代码的时候，如果一般的pull会不断的产生一个merge看起来会很烦，用下边的使用添加一个--rebase就不会产生无用的merge了
-$ git pull --rebase origin master
