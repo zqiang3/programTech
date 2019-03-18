@@ -66,3 +66,4 @@ content_by_lua 'ngx.say("hello world")';
 **教程**
 
 https://github.com/openresty/lua-nginx-module
+
