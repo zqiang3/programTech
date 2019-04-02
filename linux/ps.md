@@ -1,3 +1,34 @@
+```bash
+ps axf   # 主要用于查看当前系统中进程的 PID 以及执行终端(tty)和状态等信息，更重要的是它能显示出进程的父子关系。
+ps axj   # 主要用于查看当前系统中进程的 PPID、PID、PGID、SID、TTY 等信息。
+ps axm   # 显示进程的详细信息，PID 列下面的减号(-)是这个进程中的线程。
+ps ax -L # 以 Linux 的形式显示当前系统中的进程列表。
+# man ps
+To get info about threads:
+ps -eLf
+ps axms
+
+To print a process tree:
+ps -ejH
+ps axjf
+
+To see every process on the system using BSD syntax:
+ps ax
+ps axu
+```
+
+## man ps
+
+x: This option causes ps to list all processes owned by you (same EUID as ps), or to list all processes when used together with the a option.
+
+m, -m: Show threads after processes.
+
+j, -j: Jobs format.
+
+l, -l: long format.
+
+f, --forest: ASCII art process hierarchy
+
 ## ps
 
 ps 是process status的缩写，ps用来显示当前系统中的进程。ps是最基本同时也是非常强大的进程查看命令使用该命令可以查看正在运行的进程和进程的状态、进程是否结束、进程有没有僵死，进程占用多少资源等等。
@@ -214,13 +245,14 @@ ps -p PID -o lstart
 
 参数： 
 -A ：所有的进程均显示出来，与 -e 具有同样的效用； 
--a ： 显示现行终端机下的所有进程，包括其他用户的进程； 
+-a ： 显示现行终端机下的所有进程f，包括其他用户的进程； 
 -u ：以用户为主的进程状态 ； 
 x ：通常与 a 这个参数一起使用，可列出较完整信息。 
 输出格式规划： 
 l ：较长、较详细的将该 PID 的的信息列出； 
 j ：工作的格式 (jobs format) 
 -f ：做一个更为完整的输出。 
+
 特别说明： 
 由于 ps 能够支持的系统类型相当的多，所以他的参数多的离谱！ 
 而且有没有加上 - 差很多！详细的用法应该要参考 man ps 喔！
