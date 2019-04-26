@@ -1,3 +1,45 @@
+## uWSGI是如何工作的
+
+<https://stone.moe/default/how-uwsgi-works.html>
+
+人们常说，使用工具时，了解其中的原理才能用的更舒心，更加无所顾忌。
+对于程序员来说更是如此。
+
+抱着这样的心态，针对 Python 处理 HTTP 请求的工作过程做了实验，并做了一些总结归纳。
+
+0x01 uwsgi 与 uWSGI 与 WSGI
+\-
+**WSGI**：编程接口协议，专为 Python 设计，用于 Web 开发 (类比 COM 编程接口协议)
+
+```
+WSGI 协议预先约定了一些 callee (Python) 必须实现的 callable (Function)，以使 caller 能正确调用 callee，来处理 HTTP 请求。
+```
+
+**uWSGI**：一个 WSGI 协议 caller 方的具体实现，使用 C 语言编写 (类比 COM 组件的调用方)
+
+> ```
+> uWSGI 是 caller 方，我们写的 Python 程序自然就是 callee 方了。
+> uWSGI 可以通过 uwsgi 协议与 HTTP Server 进行通信，只作为调用 Python 处理请求的桥梁。
+> uWSGI 当然也提供了一个 HTTP 服务器的功能，直接处理 HTTP 请求。
+> ```
+
+**uwsgi**：通信协议，描述了 HTTP Server 与 WSGI caller 如何通信（类比 CGI，FastCGI）
+
+> ```
+> 具体通信协议的差别在这里不再赘述，但值得一提的是：
+> uwsgi 继承了 FastCGI 的并发优点，但不是通过多进程，而是通过消息分片的方式，在同一 Socket 上并发传输多个请求，这使得资源被更有效的利用了。
+> ```
+
+于是一个常规的处理过程是这样的：
+
+> ```
+> Client ==HTTP==> Nginx ==uwsgi==> uWSGI ==WSGI==> Python 程序
+> ```
+
+经过实验发现，uWSGI 通过将支持 WSGI 的 Python 程序载入到其每个 Worker Process 中，各作为单独的实例存在于内存中。在接受Web请求时，分配给各 Worker Process 进行处理。
+
+
+
 ## uWSGI的安装
 
 uWSGI is a (big) C application, so you need a C compiler (like gcc or clang) and the Python development headers.
@@ -101,7 +143,7 @@ uwsgi是一种通信协议，负责在服务器和应用程序间进行数据通
 
 **通信过程**： 
 
-客户端发送一个http请求，被nginx服务器接收，nginx服务器将请求转发给uwsgi,uwsgi将请求转发给实现uwsgi协议的应用程序(flask,gunicorn等等)
+客户端发送一个http请求，被nginx服务器接收，nginx服务器将请求转发给uWSGI,uWSGI将请求转发给实现uwsgi协议的应用程序(flask,gunicorn等等)
 
 ## uWSGI配置
 
