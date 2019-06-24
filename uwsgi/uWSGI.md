@@ -130,7 +130,7 @@ location / {
 运行usgi：(注意使用 --http-socket，不同于--http, --http是直接启一个http代理接收请求)
 
 ```bash
-uwsgi  --socket 127.0.0.1:9090 --wsgi-file testapp.py
+uwsgi  --http-socket 127.0.0.1:9090 --wsgi-file testapp.py
 ```
 
 uwsgi_pass使用的是uwsgi协议，proxy_pass使用HTTP协议与uWSGI server交互。

@@ -9,3 +9,4 @@ vmstat 5
 * in(interrupt) 每秒中断次数
 * r(running or runnable) 就绪队列，正在运行和等待CPU的进程数
 * b(blocked) 不可中断睡眠状态的进程数。
+
