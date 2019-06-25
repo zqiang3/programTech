@@ -1,0 +1,1 @@
+* -s: with -l and/or -s, print human readable sizes (e.g., 1K 234M 2G)
