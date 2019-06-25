@@ -1,4 +1,9 @@
 ```bash
+# 连接mongo
+mongo host:port/dbName -u uName -p pwd
+
+mongo 127.0.0.1:30000/cc_pt_app -upt_app_online -ppt_app_online
+
 显示数据库列表
 show dbs
 
@@ -38,6 +43,14 @@ res = mongodb[TableDef.sshow_star_info].find().sort('star_id', ASCENDING)
 
 # 重命名
 db.foo.renameCollection( newName ) renames the collection 重命名表
+
+# 删除索引
+删除某collection的全部索引
+db.collection.dropIndexes()
+mongo_db[table_name].drop_indexes()
+
+删除某个索引
+db.collection.dropIndex({x: 1, y: -1})
 ```
 
 ### _id

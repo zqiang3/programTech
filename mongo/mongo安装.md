@@ -14,3 +14,17 @@ $ systemctl enable mongod
 # The last step is to enable automatically starting MongoDB when the system starts.
 ```
 
+
+
+
+
+## windows安装
+
+设置存放数据库文件的路径,在mongodb下新建一个data的文件夹, 里面新建一个log文件夹用来存储日志
+
+cd 到bin目录
+mongod.exe --dbpath=d:/mongo/data
+
+注册MongoDB的服务
+D:\development\mongodb\bin\mongod.exe --dbpath=d:\development\mongodb\data -install --logpath=D:\development\mongodb\data\log\mongo.log
+注册完了服务之后net start MongoDB启动

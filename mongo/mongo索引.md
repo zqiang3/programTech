@@ -1,27 +1,26 @@
 http://www.hello-code.com/blog/MongoDB/201509/5298.html
 
 
-²é¿´Ä³¸ö±íÉÏµÄËùÓĞË÷Òı
+æŸ¥çœ‹æŸä¸ªè¡¨ä¸Šçš„æ‰€æœ‰ç´¢å¼•
 db.collection.getIndexes()
 
-´´½¨Ë÷Òı
+åˆ›å»ºç´¢å¼•
 db.collection.ensure_index([('id', 1), ('minute', 1), ('src', 1)], background=True)
 
 
 
+options
 
-# options
-
-background£ºÊÇ·ñÔÚºóÌ¨½¨Á¢Ë÷Òı²Ù×÷;
-unique: ½¨Á¢µÄË÷ÒıÊÇ·ñÎ¨Ò»£»
-dropDups £ºÔÚ½¨Á¢Î¨Ò»Ë÷ÒıÊ±ÊÇ·ñÉ¾³ıÖØ¸´¼ÇÂ¼£»
-sparse£º¶ÔÎÄµµÖĞ²»´æÔÚµÄ×Ö¶ÎÊı¾İ²»ÆôÓÃË÷Òı£»Õâ¸ö²ÎÊıĞèÒªÌØ±ğ×¢Òâ£¬Èç¹ûÉèÖÃÎªtrueµÄ»°£¬ÔÚË÷Òı×Ö¶ÎÖĞ²»»á²éÑ¯³ö²»°üº¬¶ÔÓ¦×Ö¶ÎµÄÎÄµµ
+backgroundï¼šæ˜¯å¦åœ¨åå°å»ºç«‹ç´¢å¼•æ“ä½œ;
+unique: å»ºç«‹çš„ç´¢å¼•æ˜¯å¦å”¯ä¸€ï¼›
+dropDups ï¼šåœ¨å»ºç«‹å”¯ä¸€ç´¢å¼•æ—¶æ˜¯å¦åˆ é™¤é‡å¤è®°å½•ï¼›
+sparseï¼šå¯¹æ–‡æ¡£ä¸­ä¸å­˜åœ¨çš„å­—æ®µæ•°æ®ä¸å¯ç”¨ç´¢å¼•ï¼›è¿™ä¸ªå‚æ•°éœ€è¦ç‰¹åˆ«æ³¨æ„ï¼Œå¦‚æœè®¾ç½®ä¸ºtrueçš„è¯ï¼Œåœ¨ç´¢å¼•å­—æ®µä¸­ä¸ä¼šæŸ¥è¯¢å‡ºä¸åŒ…å«å¯¹åº”å­—æ®µçš„æ–‡æ¡£
 
 "background"
 
     If you are using MongoDB version 1.3.2+, you can create indexes in the background while other operations are taking place. By default, index creation happens synchronously. If you specify TRUE with this option, index creation will be asynchronous
 
 
-##
-ÕÒµ½Ä³¸ö¼¯ºÏÉèÖÃµÄË÷Òı
+
+æ‰¾åˆ°æŸä¸ªé›†åˆè®¾ç½®çš„ç´¢å¼•
 db.system.indexes.find({'ns': 'mobilelive.mlive_year_match_anchor_ticket_all'})
