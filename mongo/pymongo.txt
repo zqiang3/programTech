@@ -1,5 +1,0 @@
-显示所有集合名称
-collection_names
-
-删除某个集合
-drop_collection

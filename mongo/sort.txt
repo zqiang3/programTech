@@ -1,4 +1,0 @@
-.sort([('username': 1), ...])
-
-res = mongodb[TableDef.sshow_star_info].find().sort('star_id', ASCENDING)
-1代表从低到高，－1代表逆序，从高到低

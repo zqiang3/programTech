@@ -1,1 +1,0 @@
-coll.drop() # delete table

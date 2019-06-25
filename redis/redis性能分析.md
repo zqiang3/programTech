@@ -2,6 +2,10 @@
 
 当 KEYS 命令被用于处理一个大的数据库时， 又或者 SMEMBERS 命令被用于处理一个大的集合键时， 它们可能会阻塞服务器达数秒之久。
 
+## hgetall
+
+时间复杂度为O(n)。
+
 ## slowlog
 
 edis的slowlog是redis用于记录记录慢查询执行时间的日志系统。由于slowlog只保存在内存中，因此slowlog的效率很高，完全不用担心会影响到redis的性能。
