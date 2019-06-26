@@ -4,10 +4,14 @@ awk是Linux系统下强大的文本分析工具，相对于grep的查找、sed�
 
 ## 例子：分析Access文件 
 
+```bash
 awk -F',' '{print $5}' nginx_access.log | sort | uniq -c | sort -nr
-
-
 
 ps -aux |grep 10001 |awk print > file. ?
 
 ps -ef |grep -a mobilelink|grep -v grep|awk '{print $2}'
+
+last -10 | awk '{print $0}'
+
+```
+

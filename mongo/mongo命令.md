@@ -56,3 +56,12 @@ db.collection.dropIndex({x: 1, y: -1})
 ### _id
 
 _id的前四位表示时间戳
+
+
+
+### sort
+
+```
+db.users.find().sort({"age": 1, "username": 1})
+```
+

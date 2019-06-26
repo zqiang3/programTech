@@ -1,3 +1,14 @@
+### 实例
+
+```
+# 查看某个服务的cpu和内存占用
+ ps aux | grep mentactivity | grep -v 'grep' |head -10 |  awk '{print $2 " cpu:" $3 " mem:" $4"%" " time:" $9}'
+```
+
+
+
+
+
 ```bash
 ps axf   # 主要用于查看当前系统中进程的 PID 以及执行终端(tty)和状态等信息，更重要的是它能显示出进程的父子关系。
 ps axj   # 主要用于查看当前系统中进程的 PPID、PID、PGID、SID、TTY 等信息。
