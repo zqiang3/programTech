@@ -65,3 +65,11 @@ _id的前四位表示时间戳
 db.users.find().sort({"age": 1, "username": 1})
 ```
 
+## explain
+
+mongo 3.2后对explain作了一些变动
+
+```bash
+ db.test_col.explain("executionStats").find({'uid': {'$lt': 10000}})
+```
+

@@ -28,6 +28,16 @@ ps ax
 ps axu
 ```
 
+
+
+### 速查表
+
+```
+-o 
+```
+
+
+
 ## man ps
 
 x: This option causes ps to list all processes owned by you (same EUID as ps), or to list all processes when used together with the a option.
@@ -229,7 +239,7 @@ ps -p 12974 -L
 ## 显示进程已运行的时间
 
 ```bash
-ps -e -o pid,comm,etime
+ps -e -o pid,comm,etime,lstart
 ```
 
 ## 实时显示进程信息
@@ -267,3 +277,70 @@ j ：工作的格式 (jobs format)
 特别说明： 
 由于 ps 能够支持的系统类型相当的多，所以他的参数多的离谱！ 
 而且有没有加上 - 差很多！详细的用法应该要参考 man ps 喔！
+
+
+
+### -o
+
+```
+STANDARD FORMAT SPECIFIERS
+       Here are the different keywords that may be used to control the output format (e.g. with option -o) or to sort the selected processes with the GNU-style --sort option.
+
+       For example: ps -eo pid,user,args --sort user
+
+       This version of ps tries to recognize most of the keywords used in other implementations of ps.
+
+       The following user-defined format specifiers may contain spaces: args, cmd, comm, command, fname, ucmd, ucomm, lstart, bsdstart, start.
+
+       Some keywords may not be available for sorting.
+
+       CODE        HEADER    DESCRIPTION
+
+       %cpu        %CPU      cpu utilization of the process in "##.#" format.  Currently, it is the CPU time used divided by the time the process has been running (cputime/realtime ratio), expressed as a
+                             percentage.  It will not add up to 100% unless you are lucky.  (alias pcpu).
+
+       %mem        %MEM      ratio of the process's resident set size  to the physical memory on the machine, expressed as a percentage.  (alias pmem).
+       
+       args        COMMAND   command with all its arguments as a string. Modifications to the arguments may be shown.  The output in this column may contain spaces.  A process marked <defunct> is partly
+                             dead, waiting to be fully destroyed by its parent.  Sometimes the process args will be unavailable; when this happens, ps will instead print the executable name in brackets.
+                             (alias cmd, command).  See also the comm format keyword, the -f option, and the c option.
+                             When specified last, this column will extend to the edge of the display.  If ps can not determine display width, as when output is redirected (piped) into a file or another
+                             command, the output width is undefined (it may be 80, unlimited, determined by the TERM variable, and so on).  The COLUMNS environment variable or --cols option may be used to
+                             exactly determine the width in this case.  The w or -w option may be also be used to adjust width.
+
+       blocked     BLOCKED   mask of the blocked signals, see signal(7).  According to the width of the field, a 32 or 64-bit mask in hexadecimal format is displayed.  (alias sig_block, sigmask).
+
+       bsdstart    START     time the command started.  If the process was started less than 24 hours ago, the output format is " HH:MM", else it is " Mmm:SS" (where Mmm is the three letters of the
+                             month).  See also lstart, start, start_time, and stime.
+
+       bsdtime     TIME      accumulated cpu time, user + system.  The display format is usually "MMM:SS", but can be shifted to the right if the process used more than 999 minutes of cpu time.
+
+       c           C         processor utilization. Currently, this is the integer value of the percent usage over the lifetime of the process.  (see %cpu).
+
+       caught      CAUGHT    mask of the caught signals, see signal(7).  According to the width of the field, a 32 or 64 bits mask in hexadecimal format is displayed.  (alias sig_catch, sigcatch).
+
+       cgroup      CGROUP    display control groups to which the process belongs.
+
+       class       CLS       scheduling class of the process.  (alias policy, cls).  Field's possible values are:
+
+                                      -   not reported
+                                      TS  SCHED_OTHER
+                                      FF  SCHED_FIFO
+                                      RR  SCHED_RR
+                                      B   SCHED_BATCH
+                                      ISO SCHED_ISO
+                                      IDL SCHED_IDLE
+                                      ?   unknown value
+
+       cls         CLS       scheduling class of the process.  (alias policy, cls).  Field's possible values are:
+
+                                      -   not reported
+                                      TS  SCHED_OTHER
+                                      FF  SCHED_FIFO
+                                      RR  SCHED_RR
+                                      B   SCHED_BATCH
+                                      ISO SCHED_ISO
+                                      IDL SCHED_IDLE
+                                      ?   unknown value
+```
+

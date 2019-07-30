@@ -65,6 +65,12 @@ LSET list index item
 LTRIM list start end # 对列表进行修剪，只保留指定索引范围内的元素
 ```
 
+## 集合
+
+```bash
+scard set  # 集合包含的元素数量
+```
+
 
 
 ## expire
