@@ -1,0 +1,16 @@
+服务器
+host = stream.nethost
+host.startup(5005)
+host.settimer(5000)
+
+host.process()
+event, wparam, lparam, data = host.read()
+host.send()
+
+客户端
+client = stream.netstream(8)
+client.connect(ip, port)
+
+host.process()
+client.send()
+data = client.recv()
