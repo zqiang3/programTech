@@ -73,3 +73,55 @@ mongo 3.2后对explain作了一些变动
  db.test_col.explain("executionStats").find({'uid': {'$lt': 10000}})
 ```
 
+## 权限处理
+
+2.6版本
+
+```bash
+use dbname
+# 创建角色
+db.createRole(
+   {
+     role: "qa",
+     privileges: [
+       {
+         actions: [ "find","insert","remove", "update"],
+         resource: { db: "dbname", collection: "" }
+       },
+       {
+         actions: [ "find"],
+         resource: { db: "dbname", collection: "system.indexes" }
+       },
+       {
+         actions: [ "find"],
+         resource: { db: "dbname", collection: "system.namespaces" }
+       },
+     ],
+     roles: []
+   }
+)
+# 创建用户
+db.createUser({user:'qa',pwd:'qapwd',roles:[{role:'qa',db:'dbname'}]})
+```
+
+3.0+版本
+
+```bash
+use dbname
+# 创建角色
+db.createRole(
+   {
+     role: "qa",
+     privileges: [
+       {
+         actions: [ "find","insert","remove", "update", "listCollections", "listIndexes"],
+         resource: { db: "dbname", collection: "" }
+       }
+     ],
+     roles: []
+   }
+)
+# 创建用户
+db.createUser({user:'qa',pwd:'qapwd',roles:[{role:'qa',db:'dbname'}]})
+```
+
