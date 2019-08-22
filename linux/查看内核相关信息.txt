@@ -1,9 +1,0 @@
-uname -r
-
-# 查看codename
-lsb_release -a
-
-cat /etc/issue
-6是squeeze
-7是wheezy
-8是jessie

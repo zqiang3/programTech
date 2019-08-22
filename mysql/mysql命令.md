@@ -1,4 +1,4 @@
-```
+```bash 
 连接mysql
 mysql -uroot -p
 mysql -h192.168.11.42 -uwebcc -pwebcc
