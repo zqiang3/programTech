@@ -1,6 +1,8 @@
 
 
+## 链接
 
+https://blog.csdn.net/csdn_yudong/article/details/85957996 （详细介绍git每个命令）
 
 
 
@@ -41,7 +43,9 @@ git push origin :master
 等同于
 git push origin --delete master
 
-# 推送分支
+# push
+git push 命令用于将本地分支的更新，推送到远程主机。它的格式与 git pull 命令相仿。
+git push <远程主机名> <本地分支名>:<远程分支名>
 git push
 不带任何参数的git push，默认只推送当前分支，这叫做simple方式。此外，还有一种matching方式，会推送所有有对应的远程分支的本地分支。Git 2.0版本之前，默认采用matching方法，现在改为默认采用simple方式。如果要修改这个设置，可以采用git config命令。
 
@@ -49,12 +53,20 @@ git push origin master
 上面命令表示，将本地的master分支推送到origin主机的master分支。如果后者不存在，则会被新建。
 
 # 关联远程分支
+在某些场合，git 会自动在本地分支与远程分支之间，建立一种追踪关系(tracking)。比如，在 git clone 的时候，所有本地分支默认与远程主机的同名分支，建立追踪关系，也就是说，本地的 master 分支自动“追踪” origin/master 分支。
+git 也允许手动建立追踪关系。
+git branch --set-upstream master origin/next
+上面的命令指定 master 分支追踪 origin/next 分支。
+如果当前分支与远程分支存在追踪关系，git pull 就可以省略远程分支名。
+git pull origin
+上面命令表示，本地的当前分支自动与对应的 origin 主机“追踪分支”(remote-tracking branch)进行合并。
+如果当前分支只有一个追踪分支，连远程主机名都可以忽略。
+
 git push --set-upstream origin xxx
 或git push -u origin xxx
 上面命令将本地的master分支推送到origin主机，同时指定origin为默认主机，后面就可以不加任何参数使用git push了
 
 使用场景: 本地新建一个分支后，必须要做远程分支关联。如果没有关联，git会在下面的操作中提示你显示的添加关联。关联目的是如果在本地分支下操作： git pull, git push ，不需要指定在命令行指定远程的分支．
-git push --set-upstream origin feature/xxx
 命令的最终修改都是针对config文件
 
 # git config
@@ -102,14 +114,37 @@ git diff SHA1 SHA2
 # 删除文件
 git rm test.txt
 
-# 拉取文件
-git pull
-git pull从远程仓库获取最新版本代码并merge到本地。
+# pull
+git pull 命令的作用是，取回远程主机的某个分支的更新，再与本地的指定分支合并。完整格式如下：
+git pull <远程主机名> <远程分支名>:<本地分支名>
+比如，取回origin主机的next分支，与本地的master分支合并，需要写成下面这样。
+git pull origin next:master
+如果远程分支是与当前分支合并，则冒号后面的部分可以省略。
+git pull origin master
+上面的命令表示，取回 origin/master 分支，再与当前分支合并。实质上，这等同于先做 git fetch，再 merge。
+git fetch origin
+git merge origin/master
 
+# rebase
+如果合并需要采用 rebase 模式，可以使用 -rebase 选项。
+git pull --rebase <远程主机名> <远程分支名>:<本地分支名>
 git pull --rebase
 我们在使用git pull命令的时候，可以使用--rebase参数，这里表示把你的本地当前分支里的每个提交(commit)取消掉，并且把它们临时保存为补丁(patch)(这些补丁放到".git/rebase"目录中),然后把本地当前分支更新为最新的"origin"分支，最后把保存的这些补丁应用到本地当前分支上。
 
 git config --global branch.autosetuprebase always  # 所有分支在pull时都使用rebase
+
+# fetch
+一旦远程主机的版本库有了更新(git 术语叫做 commit)，需要将这些更新取回本地，这时就要用到 git fetch 命令。
+git fetch <远程主机名>
+上面命令将某个远程主机的更新，全部取回本地。
+默认情况下，git fetch 取回所有分支(branch)的更新。如果只想取回特定分支的更新，可以指定分支名。
+git fetch <远程主机名> <分支名>
+比如，取回 origin 主机的 master 分支
+git fetch origin master
+所取回的更新，在本地主机上要用“远程主机名/分支名”的形式读取。比如 origin 主机的 master，就要用 origin/master 读取。
+
+git fetch -p ：取回远程更新，删除不存在的分支。
+
 
 # git log
 可以加 --pretty=oneline 输出单行日志
