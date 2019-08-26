@@ -36,23 +36,26 @@ git checkout -b feature/some_feature -t origin/feature/some_feature
 git branch -d test
 -D  # 强制删除
 
-# 推送分支
-git push origin master
-上面命令表示，将本地的master分支推送到origin主机的master分支。如果后者不存在，则会被新建。
-如果省略本地分支名，则表示删除指定的远程分支，因为这等同于推送一个空的本地分支到远程分支。
-
 # 删除远程仓库分支
 git push origin :master
 等同于
 git push origin --delete master
 
-# 推送分支并指定origin为默认主机
-git push -u origin master
-上面命令将本地的master分支推送到origin主机，同时指定origin为默认主机，后面就可以不加任何参数使用git push了
-
-# git push
+# 推送分支
 git push
 不带任何参数的git push，默认只推送当前分支，这叫做simple方式。此外，还有一种matching方式，会推送所有有对应的远程分支的本地分支。Git 2.0版本之前，默认采用matching方法，现在改为默认采用simple方式。如果要修改这个设置，可以采用git config命令。
+
+git push origin master
+上面命令表示，将本地的master分支推送到origin主机的master分支。如果后者不存在，则会被新建。
+
+# 关联远程分支
+git push --set-upstream origin xxx
+或git push -u origin xxx
+上面命令将本地的master分支推送到origin主机，同时指定origin为默认主机，后面就可以不加任何参数使用git push了
+
+使用场景: 本地新建一个分支后，必须要做远程分支关联。如果没有关联，git会在下面的操作中提示你显示的添加关联。关联目的是如果在本地分支下操作： git pull, git push ，不需要指定在命令行指定远程的分支．
+git push --set-upstream origin feature/xxx
+命令的最终修改都是针对config文件
 
 # git config
 git config --global push.default matching
@@ -118,8 +121,6 @@ git log --since=2.months.ago --until=1.days.ago
 # 命令历史
 git reflog
 ```
-
-
 
 
 
@@ -292,18 +293,6 @@ git gc
 另外，gerrit中心库是个bare库，将HEAD默认指向了master，因此master分支是不能进行删除操作的，最好不要选择删除master分支的策略，换用其他分支。如果一定要这样做，可以考虑到gerrit服务器上修改HEAD指针。。。不建议这样搞
 
 
-# 追踪远程分支
- git push --set-upstream origin feature/1102
-
-git branch --set-upstream feature/1102 origin/<branch>
-
-git branch --track branch名稱 遠端branch 建立一個 tracking 遠端 branch 的 branch，這樣以後 push/pull都會直接對應到該遠端的branch。
-
-# 远程分支关联
-使用场景: 本地新建一个分支后，必须要做远程分支关联。如果没有关联，git会在下面的操作中提示你显示的添加关联。关联目的是如果在本地分支下操作： git pull, git push ，不需要指定在命令行指定远程的分支．
-
-git push --set-upstream origin feature/micbrowser
-命令的最终修改都是针对config文件
 
 # git push , git pull的默认行为
 如果你未曾改动过git config中的push.default属性，根据我们使用的git不同版本（Git 2.0之前或之后），git push通常会有两种截然不同的行为:
