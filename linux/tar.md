@@ -6,3 +6,6 @@ tar -zcvf test.tar.gz test # 第一个参数是打包文件名，第二参数指
 tar -cf 将所有文件归档为一个文件
 
 tar-zcf 归档并用gzip压缩
+
+## 解压tar.gz文件
+tar -zxvf filename. tar.gz
