@@ -20,6 +20,9 @@ show tables
 # 显示表的结构
 desc 表名
 
+# 
+show create table 表名
+
 # 建表
 mysql> create table student
     -> (

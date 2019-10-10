@@ -35,3 +35,24 @@ netstat -r  # 显示核心路由信息
 netstat -ap | grep ssh
 ```
 
+## 安装
+
+```bash
+apt-get install net-tools
+```
+
+## 详细说明
+
+默认情况下 netstat 会通过反向域名解析技术查找每个 IP 地址对应的主机名。这会降低查找速度。如果你觉得 IP 地址已经足够，而没有必要知道主机名，就使用 **-n** 选项禁用域名解析功能。
+
+```bash
+$ netstat -ant
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State      
+tcp        0      0 127.0.1.1:53            0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN     
+tcp        0      0 192.168.1.2:49058       173.255.230.5:80        ESTABLISHED
+tcp        0      0 192.168.1.2:33324       173.194.36.117:443      ESTABLISHED
+tcp6       0      0 ::1:631                 :::*                    LISTEN
+```
+
