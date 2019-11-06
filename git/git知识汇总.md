@@ -159,8 +159,6 @@ git reflog
 
 
 
-# git知识
-
 git是以指针为基础。
 
 git里的origin到底代表什么意思？远程仓库默认被称为origin。
@@ -232,25 +230,29 @@ git config --global user.email "your email"
 判断文件是否更改，使用时间戳、文件长度等信息进行比较要比通过文件内容比较要快的多，所以 Git 这样的实现方式可以让工作区状态扫描更快速的执行，这也是 Git 高效的因素之一。
 文件.git/index 实际上就是一个包含文件索引的目录树，像是一个虚拟的工作区。在这个虚拟工作区的目录树中，记录了文件名、文件的状态信息（时间戳、文件长度等），文件的 内容并不存储其中，而是保存在 Git 对象库（.git/objects）中，文件索引建立了文件和对象库中对象实体之间的对应。
 
-# git add
+## git add
+
 当对工作区修改（或新增）的文件执行 “git add” 命令时，暂存区的目录树被更新，同时工作区修改（或新增）的文件内容被写入到对象库中的一个新的对象中，而该对象的ID 被记录在暂存区的文件索引中。
 
-# git commit 
+## git commit 
+
 当执行提交操作（git commit）时，暂存区的目录树写到版本库（对象库）中，master 分支会做相应的更新。即 master 指向的目录树就是提交时暂存区的目录树。
 
-# git reset HEAD
+## git reset HEAD
+
 当执行 “git reset HEAD” 命令时，暂存区的目录树会被重写，被 master 分支指向的目录树所替换，但是工作区不受影响。
 
-# git rm --cached <file>
+## git rm --cached <file>
+
 当执行 “git rm –cached <file>” 命令时，会直接从暂存区删除文件，工作区则不做出改变。
 
-# git checkout <file>
+## git checkout <file>
+
 当执行 “git checkout .” 或者 “git checkout — <file>” 命令时，会用暂存区全部或指定的文件替换工作区的文件。这个操作很危险，会清除工作区中未添加到暂存区的改动。
 
-# git checkout HEAD .
+## git checkout HEAD .
+
 当执行 “git checkout HEAD .” 或者 “git checkout HEAD <file>” 命令时，会用 HEAD 指向的 master 分支中的全部或者部分文件替换暂存区和以及工作区中的文件。这个命令也是极具危险性的，因为不但会清除工作区中未提交的改动，也会清除暂存区中未提交的改 动。
-
-
 
 
 
@@ -288,8 +290,8 @@ git br -vv | grep gone | awk '{print $1}' | xargs git br -d (gone表示远端分
 
 
 
+## revert
 
-#回滚代码
 如果修改还没提交
 git reset HEAD lib/foo.b
 如果已经提交了一次
@@ -303,7 +305,8 @@ git reset --hard HEAD~3：将最近3次的提交回滚
 应用场景：自动部署系统发布后发现问题，需要回滚到某一个commit，再重新发布
 原理：先将本地分支退回到某个commit，删除远程分支，再重新push本地分支
 
-# git blame
+## git blame
+
 寻找谁更改了一个文件中的一行代码经常会用到
 git blame FILE
 git blame -c FILE
@@ -327,9 +330,8 @@ git gc
 
 另外，gerrit中心库是个bare库，将HEAD默认指向了master，因此master分支是不能进行删除操作的，最好不要选择删除master分支的策略，换用其他分支。如果一定要这样做，可以考虑到gerrit服务器上修改HEAD指针。。。不建议这样搞
 
+## git push , git pull的默认行为
 
-
-# git push , git pull的默认行为
 如果你未曾改动过git config中的push.default属性，根据我们使用的git不同版本（Git 2.0之前或之后），git push通常会有两种截然不同的行为:
 
 develop分支中本地新增的commit被push到远程仓库

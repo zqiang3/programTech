@@ -1,4 +1,16 @@
- find 查找目录 -name 文件名
+## NAME
+find -- walk a file hierarchy
+
+## DESCRIPTION
+
+The find utility recursively descends the directory tree for each path listed, evaluating an expression (composed of the ``primaries'' and ``operands'' listed below) in terms of each file in the tree.
+
+## SYNOPSIS   
+
+```bash
+find [-H | -L | -P] [-EXdsx] [-f path] path ... [expression]
+find [-H | -L | -P] [-EXdsx] -f path [path ...] [expression]
+```
 
 
 
