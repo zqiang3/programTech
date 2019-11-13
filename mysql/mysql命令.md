@@ -50,21 +50,16 @@ delete from 表名
 select * from 表名;
 select * from 表名 limit 1;
 
-
-select id, created_time from 表名 where user_id = 6729061087028707336;
-# 使用to_days
-select id, created_time from 表名 where user_id = 6729061087028707336 AND to_days(created_time) >= to_days(now());
-```
-
-
-
-
-
-```
 # 统计行数
 select count(*) from table_name;
 
 
+select id, created_time from 表名 where user_id = 6729061087028707336;
+# 使用to_days
+select id, created_time from 表名 where user_id = 6729061087028707336 AND to_days(created_time) >= to_days(now());
+
+# 排序
+ORDER BY FIELD1 [ASC [DESC][默认 ASC]], [field2...] [ASC [DESC][默认 ASC]]
 ```
 
 
