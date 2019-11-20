@@ -161,7 +161,7 @@ git reflog
 
 git是以指针为基础。
 
-git里的origin到底代表什么意思？远程仓库默认被称为origin。
+git里的origin到底代表什么意思？<b>远程仓库默认被称为origin</b>。
 
 git仓库就是那个.git目录，其中存放的就是我们提交的文档内容，git可基于文档索引对其所管理的文档进行追踪。
 
@@ -185,6 +185,8 @@ git commit时把暂存区内容提交到当前分支
 
 
 ## origin
+
+git里的origin到底代表什么意思？<b>远程仓库默认被称为origin</b>。
 
 远程名称是一个代码仓库别名，git clone默认使用的是origin
 
@@ -369,3 +371,31 @@ matching - push所有本地和远程两端都存在的同名分支。
 
 
 
+## git alias
+
+Here is the template for an advanced alias that requires parameters:
+
+```
+my_alias = "!f() { 〈your complex command〉 }; f"
+```
+
+The trick is to wrap our git command in an “anonymous” bash function – or better said a function named “f“. Doing it like this we have access to command line variables and shell expansions as the following:
+
+- $1 to mean the first parameter passed to the command.
+- $2 to mean the second parameter passed to the command. (and so on for $3,
+  $4, etc.)
+- $@ to mean *all* command line parameters passed.
+
+We can also now chain git commands with && and use the entire Unix toolkit.
+
+## git push
+
+git push 命令用于将本地分支的更新，推送到远程主机。它的格式与 git pull 命令相仿。
+
+```bash
+git push <远程主机名> <本地分支名>:<远程分支名>
+```
+
+
+
+`git push <远程主机名> <本地分支名>:<远程分支名>`

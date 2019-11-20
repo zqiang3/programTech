@@ -1,4 +1,26 @@
-## gorm连接数据库
+## link
+
+https://jasperxu.github.io/gorm-zh/database.html#m
+
+
+
+## gorm操作
+
+
+
+```go
+import (
+    "github.com/jinzhu/gorm"
+    _ "github.com/jinzhu/gorm/dialects/mysql"
+)
+
+func main() {
+  db, err := gorm.Open("mysql", "user:password@/dbname?charset=utf8&parseTime=True&loc=Local")
+  defer db.Close()
+}
+```
+
+
 
 ```go
 package scripts

@@ -60,7 +60,27 @@ select id, created_time from 表名 where user_id = 6729061087028707336 AND to_d
 
 # 排序
 ORDER BY FIELD1 [ASC [DESC][默认 ASC]], [field2...] [ASC [DESC][默认 ASC]]
+
+# 删字段
+alter table TABLENAME drop columnnane;
+
+# 添加索引
+ALTER TABLE `t_user` ADD unique(`username`);
+alter table `person` add index idx_name(`name`);
+
+# 添加索引时指定长度
+CREATE INDEX index_name ON table_name (column_name(length), clolumn_name(length)…)；
 ```
+
+
+
+## 执行计划
+
+```bash
+explain select * from person where name = 'sql';
+```
+
+
 
 
 

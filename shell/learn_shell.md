@@ -84,6 +84,16 @@ length=${#array_name[*]}
 
 
 
+## 变量
+
+```bash
+r=${a-b}   # 当变量a为null时var=b
+r=${a:-b}  # 当变量a为null或为空字符串时var=b
+r=${1:-b}  # 当第一个参数为null或为空字符串时var=b
+```
+
+
+
 ## 链接
 
 https://juejin.im/post/59f92f22f265da43356212a8
