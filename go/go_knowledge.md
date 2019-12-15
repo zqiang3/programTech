@@ -1,3 +1,283 @@
+
+
+go语言学习
+
+
+
+UPDAT
+
+
+
+\## import
+
+包名和包路径并不需要完全一致
+
+一个目录下只能有一个包
+
+import只是导入了目录名，和包的名字没有任何关系
+
+Import只是导入目录名，相当于添加了PATH变量
+
+
+
+\## defer
+
+1. 当defer被声明时，其参数就被实时解析
+2. Defer的执行顺序为先进后出
+3. 
+
+
+
+\## 字符串
+
+字符串类型是不可变的
+
+尝试修改字符串内部数据的操作是被禁止的
+
+两个十六进制是一个字节，三个八进制数也是一个字节
+
+原生的字符串，反引号
+
+
+
+\## 类型转换
+
+Go语言不允许隐式类型转换
+
+
+
+\## Printf
+
+%v %+v %#v
+
+%T 相应值的类型
+
+%% 字面上的百分号
+
+%t 布尔占位符
+
+%b 二进制表示
+
+%d %c %x %X
+
+%p 指针占位符
+
+
+
+
+
+\## 函数
+
+函数的返回值，命名返回值即使只有一个，也需要使用()括起来
+
+
+
+\## 方法
+
+方法多了一个接受者
+
+
+
+\## 接口
+
+一个类型可以自由的使用另一个满足相同接口的类型来进行替换被称作可替换性，这是一个面向对象的特性。
+
+一个类型如果拥有一个接口需要的所有方法，那么这个类型就实现了这个接口。
+
+一个类型属于某个接口只要这个类型实现这个接口
+
+每一个具体类型的组基于它们相同的行为可以表示成一个接口类型。
+
+
+
+Go语言的起源
+
+
+
+
+
+\## for
+
+for initialization; condition; post {
+
+​	// zero or more statements
+
+}
+
+
+
+\## 变量初始化
+
+s := “” // 声明和赋值
+
+var s string // 声明
+
+var s string = “zq”
+
+var s = “zq” // 自动推断
+
+
+
+q := […]int{1, 2, 3}
+
+
+
+\## if
+
+{}是必须的，即便只有一条语句
+
+If statement; condition {} // 在condition前会执行一条可选语句
+
+
+
+\## switch
+
+Case后自带break功能，匹配成功后不会执行其他case，如果需要执行后面的case，可以用fallthrough
+
+Type Switch, 判断某个interface中实际存储的变量类型
+
+
+
+
+
+\## new make
+
+new是内建函数
+
+func new(Type) *Type
+
+new仅仅分配空间，传递给new函数的是一个类型，不是一个值。返回的是指向这个新分配的零值的指针。
+
+// The new built-in function allocates memory. The first argument is a type, not a value, and the value returned is a pointer to a newly allocated zero value of that type.
+
+
+
+func make(Type, size …IntegerType) Type
+
+make分配且初始化一个slice，或者map或者chan对象，只能是这三种对象。返回值就是这个类型（一个引用类型），而不是指针。
+
+
+
+总结：new其实不常用，在现实的编码中，通常是采用短声明语句以及结构体的字面量达到我们的目的，这样更简洁方便，而且不会涉及到指针这种比较麻烦的操作。
+
+
+
+\## 数组
+
+数组的长度是固定的
+
+数组之间可以用==或!=比较，但不同长度的数组是不同的类型，不能进行比较。
+
+数组遍历 for i, value := range arr {}
+
+
+
+\## 切片
+
+切片添加元素的方法 append
+
+reslice, 索引不可以超过slice切片的容量，越界不会使底层数组重新分配，而是报错
+
+
+
+\## map
+
+哈希表是一种巧妙并且实用的数据结构，可在常数时间复杂度内检索、更新或删除对应的value
+
+Map中所有的key都有相同的类型，所有的value也有着相同的类型，但key和value可以是不同的数据类型。其中Key必须是支持==比较运算符的数据类型
+
+删除 delete(m, “Alice”)
+
+即使这些元素不在map中也没有关系，如果一个查找失败将返回value类型对应的零值。
+
+
+
+\## channel
+
+Channel是一个先进先出的队列
+
+
+
+\## 结构体
+
+Go不支持类，而是提供了结构体，结构体中可以添加方法，这样可以将数据和操作数据的方法绑定起来
+
+结构体是值类型，因此可以通过new函数来创建
+
+结构体通过.来访问内部的成员
+
+
+
+点操作符也可以和指向结构体的指针一起工作
+
+
+
+匿名成员，通过匿名成员可以把其他结构体嵌入进来
+
+
+
+\## 短变量声明符
+
+不能在函数外使用，不能用来声明全局变量
+
+短变量声明符左边至少得有一个变量是没有定义过的
+
+
+
+\## 指针
+
+指针对于性能而言是不言而喻的
+
+类型指针不能进行偏移和运算
+
+
+
+C/C++语言中的裸指针可以自由偏移，甚至可以在某些情况下偏移进入操作系统的核心区域
+
+
+
+\## interface{}
+
+interface{}可以接受任意类型的对象值
+
+
+
+\## 值类型与引用类型
+
+Map slice channel 方法与函数是引用类型
+
+对比python的可变类型与不可变类型
+
+按引用传递实质上也是按值传递，传递的是指针的值，指针的值将被复制，但指针指向的地址的内容不会被复制
+
+
+
+\## 单元测试
+
+Go提供了很好有单元测试功能，单元测试只需新建一个以_test.go结尾的文件
+
+
+
+\## unsafe.Sizeof
+
+
+
+\## 类型别名在1.9引入
+
+type handle int
+
+type handle = int
+
+
+
+\## 类型断言
+
+类型断言是一个使用在接口值上的操作
+
+
+
+
+
 ## 概要
 
 所有代码都可在下面的仓库获得。
@@ -157,6 +437,43 @@ struct array slice map channel
 
 布尔型的值只可以是常量 true 或者 false。 
 
+## rune类型
+
+link: https://juejin.im/post/5b44caebf265da0f491b8b83
+
+```
+// rune is an alias for int32 and is equivalent to int32 in all ways. It is
+// used, by convention, to distinguish character values from integer values.
+
+//int32的别名，几乎在所有方面等同于int32
+//它用来区分字符值和整数值
+
+type rune = int32
+
+```
+
+
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+
+	var str = "hello 你好"
+	fmt.Println("len(str):", len(str))
+
+}
+```
+
+
+
+golang中string底层是通过byte数组实现的。中文字符在unicode下占2个字节，在utf-8编码下占3个字节，而golang默认编码正好是utf-8。
+
+
+
+
 ## 布尔型与逻辑运算符
 
 在格式化输出时，你可以使用 `%t` 来表示你要输出的值为布尔型 
@@ -168,6 +485,10 @@ struct array slice map channel
 在 Go 语言中，&& 和 || 是具有快捷性质的运算符，当运算符左边表达式的值已经能够决定整个表达式的值的时候（&& 左边的值为 false，|| 左边的值为 true），运算符右边的表达式将不会被执行。利用这个性质，如果你有多个条件判断，应当将计算过程较为复杂的表达式放在运算符的右侧以减少不必要的运算。 
 
 ## 字符
+
+Go语言同样支持 Unicode（UTF-8），因此字符同样称为 Unicode 代码点或者 runes，并在内存中使用 int 来表示。在文档中，一般使用格式 U+hhhh 来表示，其中 h 表示一个 16 进制数。
+
+
 
 字符使用单引号括起来，`\x` 总是紧跟着长度为 2 的 16 进制数 
 
@@ -287,6 +608,23 @@ func min(a ...int) int {  // a 的类型是 []int
 
 合理使用defer可以使代码更简洁
 
+
+
+## 方法
+
+```go
+type Student struct {
+  name string
+  age int
+}
+
+func (s *Student) Hello() {
+  fmt.Println("hello")
+}
+```
+
+
+
 ## 依赖包
 
 随着Go 1.5 release版本的发布，vendor目录被添加到除了GOPATH和GOROOT之外的查找依赖目录。在Go 1.6之前，你需要手动的设置环境变量`GO15VENDOREXPERIMENT=1`才可以使Go找到Vendor目录，然而在Go 1.6之后，这个功能已经不需要配置环境变量就可以实现了。
@@ -311,7 +649,7 @@ func min(a ...int) int {  // a 的类型是 []int
 
 ## 结构体
 
-自定义一个结构体
+定义结构体和C语言一样，使用struct关键字。在结构体内部定义它们的成员变量和类型，只是类型要放到后面，并且**变量之间不用逗号**。如果成员变量的类型相同的话，可以把它们写到同一行。
 
 ```go
 type Rect struct {
@@ -327,20 +665,18 @@ type Rect struct {
 ```go
 rect1 := new(Rect)
 rect2 := &Rect{}
-rect3 := &Rect{0, 0, 100, 200}
-rect4 := &Rect{width: 100, height: 200}
+rect3 := &Rect{0, 0, 100, 200}           // 按照字段顺序进行初始化
+rect4 := &Rect{width: 100, height: 200}  // 通过 field:value 形式初始化
 ```
 
 注意这几个变量全部为指向Rect结构的指针(指针变量)，因为使用了new()函数和&操作符．而如果使用方法
-
-
 
 `a := Rect{}`则表示这个是一个`Rect{}`类型．两者是不一样的．参考代码：
 
 ```go
 func main() {
   rect1 := &Rect{0, 0, 100, 200}
-  rect1.x = 10
+  rect1.x = 10  // Go语言自带隐式解引用
   a := Rect{}
   a.x = 15
 
@@ -362,3 +698,53 @@ func main() {
  *main.Rect
 
 从结果中可以清楚的看到两者的不同．
+
+## 指针
+
+在Go语言中，直接砍掉了C语言指针最复杂的指针运算部分，只留下了获取指针（&运算符）和获取对象（*运算符）的运算，使用方法和C语言很类似。但不同的是，Go语言中**没有 -> 操作符**来调用指针所属的成员，而与一般对象一样，都是使用`.`来调用
+
+Go语言自带指针隐式解引用 ：对于一些复杂类型的指针， 如果要访问成员变量时候需要写成类似 *p.field的形式时，只需要p.field即可访问相应的成员。
+
+## make
+
+```go
+func make(Type, size IntegerType) Type
+```
+
+> The make built-in function **allocates and initializes an object（分配空间 + 初始化）** of type slice, map or chan**(only)**. Like new , the first arguement is a type, not a value. Unlike new, make’s return type is the same as the type of its argument, not a pointer to it. The specification of the result depends on the type.
+
+
+
+> ```
+> Slice : 第二个参数 size 指定了它的长度，此时它的容量和长度相同。
+> 你可以传入第三个参数 来指定不同的容量值，但是必须不能比长度值小。
+> 比如: make([]int, 0, 10)
+> Map: 根据size 大小来初始化分配内存，不过分配后的 map 长度为0。 如果 size 被忽略了，那么会在初始化分配内存的时候 分配一个小尺寸的内存。
+> Channel: 管道缓冲区依据缓冲区容量被初始化。如果容量为 0 或者被 忽略，管道是没有缓冲区的。
+> ```
+
+
+
+## 数组打散
+
+‘…’ 其实是go的一种语法糖。
+它的第一个用法主要是用于函数有多个不定参数的情况，可以接受多个不确定数量的参数。
+第二个用法是slice可以被打散进行传递。
+
+```go
+package main
+import "fmt"
+
+func main() {
+    lines := []string {"aaa", "bbb", "fff",}
+    fmt.Println(lines)
+    testArray("haha", "wawa", "ccc")
+}
+
+func testArray(args ...string) {
+    for _, arg := range args {
+        fmt.Println(arg)
+    }
+}
+```
+

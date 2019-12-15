@@ -145,6 +145,147 @@ strconv.ParseFloat(s string, bitSize int) (f flaot64, err error)
 
 ## 控制结构
 
+### if 
+
+```go
+// simple if
+if x > 0 {
+  fmt.Println(x)
+}
+
+// init
+if err := file.Chmod(0644); err != nil {
+  fmt.Println(err)
+}
+
+// the code below reads well
+f, err := file.Open(name)
+if err != nil {
+  return err
+}
+
+d, err := file.Stat(name)
+if err != nil {
+  f.Close()
+  return err
+}
+codeUsing(f, d)
+```
+
+* mandotary braces
+* accept an initialization statement
+* the unnecessary else is omitted
+
+
+
+### for
+
+The go for loop is similar to C, but not the same.
+
+* unifies for and while
+* there is no do-while
+
+```go
+// like a C for
+for init; condition; post {}
+// like a C while
+for condition {}
+// infinate loop
+for {}
+```
+
+
+
+use `range` clause to loop array, slice, string, or map, or reading from a channel
+
+```go
+for key, value := range aMap {
+  fmt.Println(key, value)
+}
+```
+
+if you only need the first item(the key or index), just drop the second
+
+```go
+for key := range m {
+  fmt.Println(key)
+}
+```
+
+if you only need the second, use the bland identifier to discard the first
+
+```go
+for _, value := range arr {
+  fmt.Println(value)
+}
+```
+
+### switch
+
+* The expressions need not  be constants or even integers
+* the cases are evaluated top to bottom until a match is found
+* if the switch has no expression it switches on true（可以把`if-else if-else`写成switch）
+* switch可通过逗号列表相同的条件
+
+```go
+func shouldEscape(c byte) bool {
+  switch c {
+    case ' ', '?', '=':
+    	return true
+  }
+  return false
+}
+```
+
+###  
+
+type switch
+
+switch可用来判断接口变量的动态类型
+
+
+
+### break
+
+In Go, `break` can break to a label
+
+```go
+Loop:
+for(n := 0; n < len(src); n += size) {
+  switch {
+    case src[n] < sizeOne:
+    if validateOnly {
+      break
+    }
+    size = 1
+    update(src[1])
+    case src[n] < sizeTwo:
+    if n + 1 >= len(src) {
+      err = errShortInput
+      break Loop
+    }
+    if validateOnly {
+      break
+    }
+    size = 2
+  }
+}
+```
+
+### continue
+
+`continue`也可接受一个标签，不过只能在循环内使用
+
+### commar
+
+Go没有逗号表达式
+
+### 自增，自减
+
+`++`, `--`是语句，而非表达式
+
+
+
 ```go
 if condition1 {
     // do something 
@@ -188,7 +329,10 @@ for pos, char := range str {
 os.Exit(1)
 ```
 
-## 函数
+## function
+
+* can return multiple values
+* named results, initialized as zero values
 
 ```go
 func name(parameter-list) (result-list) {
@@ -197,6 +341,70 @@ func name(parameter-list) (result-list) {
 ```
 
 go不支持函数重载
+
+## defer
+
+two advantages
+
+1. garantees that you never forget to release resources
+2. the code sits near the function, it't more clearer
+
+* the arguments of the defer function are evaluated when the defer executed
+* defer functions are executed in FIFO order
+
+```go
+func trace(s stirng) string {
+  fmt.Println("Entering %s", s)
+  return s
+}
+
+func un(s string) {
+  fmt.Println("Leaveing %s", s)
+}
+
+func a() {
+  defer un(trace("a"))
+  fmt.Println("in a")
+}
+```
+
+## new
+
+build-in function
+
+`new(T)` allocates zeroed storage for a new item of type T and return it's address
+
+## composite literals（复合字面量）
+
+```go 
+func NewFile(fd int, name string) *File {
+	if fd < 0 {
+		return nil
+	}
+	f := File{fd, name, nil, 0}
+	return &f
+  // or just 
+  // return &File{fd, name, nil, 0}
+}
+```
+
+**note**: 在Go中，返回一个局部变量的地址是没有问题的。
+
+* 使用复合字面量时，会创建一个全新的实例
+* the fields of composite literal are laied out in order and must all be present
+* 也可以按 field: value形式列出，就可以不按顺序，未给出的字段会被赋零值
+* new(File) and &File{} are equivalent
+* composite litetals can also be created for arrays, slices or maps
+
+## make
+
+* `make` creates slices, mapss and channel only
+* returns an initialized value of type T(not *T)
+* For slices, maps, and channels, make initializes the internal data structure and prepare the value for use.
+
+这三种类型为引用数据类型，在使用之前必须初始化。例如，切片包含一个指向数组的指针，长度以及容量。
+
+
 
 ## range
 

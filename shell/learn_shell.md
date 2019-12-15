@@ -86,11 +86,35 @@ length=${#array_name[*]}
 
 ## 变量
 
+### 定义变量
+
+定义变量时，变量名不加美元符号
+
+```bash
+your_name="qinjx"
+```
+
+注意，变量名和等号之间不能有空格，这可能和你熟悉的所有编程语言都不一样。
+
 ```bash
 r=${a-b}   # 当变量a为null时var=b
 r=${a:-b}  # 当变量a为null或为空字符串时var=b
 r=${1:-b}  # 当第一个参数为null或为空字符串时var=b
 ```
+
+### 使用变量
+
+使用一个定义过的变量，只要在变量名前面加美元符号即可，如：
+
+```
+your_name="qinjx"
+echo $your_name
+echo ${your_name}
+```
+
+推荐给所有变量加上花括号，这是个好的编程习惯。IntelliJ IDEA编写shell script时，IDE就会提示加花括号。
+
+## for
 
 
 
