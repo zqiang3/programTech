@@ -1,4 +1,13 @@
+## link
+
+https://linux.cn/article-2434-1.html
+
+
+
+
+
 ```bash
+
 
 -p,
 	Show the PID and name of the program to which each socket belongs.

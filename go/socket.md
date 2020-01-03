@@ -6,6 +6,14 @@ https://juejin.im/entry/5aa8ebe46fb9a028de4467bd
 
 
 
+## socket
+
+Golang的主要设计目标之一就是面向大规模后端服务程序。网络通信是服务端至关重要的一部分。
+
+在日常应用中，Go的net以及其subdirectories下的包均是“高频+刚需”，而TCP socket则是网络编程的主流。
+
+关于tcp programming，最好的资料莫过于W. Richard Stevens的网络编程圣经《》
+
 example
 
 ```go

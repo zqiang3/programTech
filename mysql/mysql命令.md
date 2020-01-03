@@ -13,11 +13,15 @@ select database();
 use 库名;
 
 # 建库
-create database 库名
+create [if not exists] database 库名
 
 # 删库
 drop database 库名
 
+# 更改
+alter database
+
+# 查看数据库定义
 show create database 库名
 
 # 显示可用的存储引擎

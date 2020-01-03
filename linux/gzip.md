@@ -1,0 +1,4 @@
+```bash
+gzip xxx -d 
+```
+

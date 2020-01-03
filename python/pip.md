@@ -1,38 +1,47 @@
-## ³£ÓÃÃüÁî
-pip freeze ÁĞ³öÒÑ°²×°µÄ°ü£¨»òÓÃpip list£©
 
-pip install 
-pip uninstall
 
-¾­³£ÔÚÊ¹ÓÃpythonµÄÊ±ºòĞèÒª°²×°¸÷ÖÖÄ£¿é£¬¶øpipÊÇºÜÇ¿´óµÄÄ£¿é°²×°¹¤¾ß£¬µ«ÊÇÓÉÓÚ¹úÍâ¹Ù·½pypi¾­³£±»Ç½£¬µ¼ÖÂ²»¿ÉÓÃ£¬ËùÒÔÎÒÃÇ×îºÃÊÇ½«×Ô¼ºÊ¹ÓÃµÄpipÔ´¸ü»»Ò»ÏÂ£¬ÕâÑù¾ÍÄÜ½â¾ö±»Ç½µ¼ÖÂµÄ×°²»ÉÏ¿âµÄ·³ÄÕ¡£
+## å®‰è£…pip3
 
-ÍøÉÏÓĞºÜ¶à¿ÉÓÃµÄÔ´£¬ÀıÈç¶¹°ê£ºhttp://pypi.douban.com/simple/
+å¦‚æœé€šè¿‡ homebrew å®‰è£… python3ï¼Œé‚£ä¹ˆ pip3 ä¼šåŒæ—¶å®‰è£…ã€‚æ‰€ä»¥å»ºè®®ç›´æ¥é€šè¿‡ homebrew å®‰è£… python3
 
-                                          Çå»ª£ºhttps://pypi.tuna.tsinghua.edu.cn/simple
+```bash
+brew install python3
+apt-get install python3-pip
+```
 
-×î½üÊ¹ÓÃµÃ±È½Ï¶à²¢ÇÒ±È½ÏË³ÊÖµÄÊÇÇå»ª´óÑ§µÄpipÔ´£¬ËüÊÇ¹ÙÍøpypiµÄ¾µÏñ£¬Ã¿¸ô5·ÖÖÓÍ¬²½Ò»´Î£¬µØÖ·Îª https://pypi.tuna.tsinghua.edu.cn/simple
+å¦‚æœä½ å·²ç»é€šè¿‡å…¶ä»–æ¸ é“å®‰è£…äº† python3 ä½†æ˜¯å°šæœªå®‰è£… pip3ï¼Œé‚£ä¹ˆéœ€è¦é€šè¿‡ä»¥ä¸‹æ­¥éª¤å®ç°å®‰è£…
 
- 
+```bash
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python3 get-pip.py
+```
 
-ÁÙÊ±Ê¹ÓÃ£º
+æŸ¥çœ‹pip3çš„ç‰ˆæœ¬
 
-¿ÉÒÔÔÚÊ¹ÓÃpipµÄÊ±ºò¼Ó²ÎÊı-i https://pypi.tuna.tsinghua.edu.cn/simple
+```
+pip3 -V
+```
 
-ÀıÈç£ºpip install -i https://pypi.tuna.tsinghua.edu.cn/simple gevent£¬ÕâÑù¾Í»á´ÓÇå»ªÕâ±ßµÄ¾µÏñÈ¥°²×°gevent¿â¡£
 
- 
 
-ÓÀ¾ÃĞŞ¸Ä£¬Ò»ÀÍÓÀÒİ£º
 
-linuxÏÂ£¬ĞŞ¸Ä ~/.pip/pip.conf (Ã»ÓĞ¾Í´´½¨Ò»¸ö)£¬ ĞŞ¸Ä index-urlÖÁtuna£¬ÄÚÈİÈçÏÂ£º
 
- [global]
- index-url = https://pypi.tuna.tsinghua.edu.cn/simple
- 
+## å®‰è£…ç¬¬ä¸‰æ–¹åº“
 
-windowsÏÂ£¬Ö±½ÓÔÚuserÄ¿Â¼ÖĞ´´½¨Ò»¸öpipÄ¿Â¼£¬Èç£ºC:\Users\xx\pip£¬ĞÂ½¨ÎÄ¼şpip.ini£¬ÄÚÈİÈçÏÂ
+```bash
+pip3 install flask
+```
 
- 
 
- [global]
- index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+
+## ä¸‹è½½é€Ÿåº¦æ…¢ï¼Ÿ
+
+åœ¨~(ä½ çš„ç”¨æˆ·ç›®å½•)ä¸‹åˆ›å»ºä¸€ä¸ª.pipç›®å½•ï¼Œåœ¨ä¸‹é¢åˆ›å»ºä¸€ä¸ªpip.confæ–‡ä»¶ï¼Œæ·»åŠ ä»¥ä¸‹å†…å®¹
+
+```bash
+[global]
+index-url = https://mirrors.aliyun.com/pypi/simple/
+[install]
+trusted-host=mirrors.aliyun.com
+```
+

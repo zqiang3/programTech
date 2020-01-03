@@ -1,3 +1,11 @@
+##link
+
+https://www.zhihu.com/question/28385400/answer/87729818
+
+
+
+## 时间
+
 MySQL有三种时间类型：
 
 - `DATE：`用于只包含日期不包含时间的时候，`MySQL`会将格式转换为`YYYY-MM-DD`，合法范围为`1000-01-01 - 9999-12-31`。

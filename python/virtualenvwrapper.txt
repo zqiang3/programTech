@@ -1,2 +1,0 @@
-mkvirtaulenv --python=python2.7 mobilelive
-

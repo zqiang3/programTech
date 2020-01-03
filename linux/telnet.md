@@ -1,3 +1,18 @@
+## 安装
+
+```bash
+apt-get update
+apt-get install telnetd
+apt-get install telnet
+
+apt-get install net-tools  # dig
+apt-get install dnsutils
+```
+
+
+
+
+
 telnet因为采用明文传送报文，安全性不好，很多Linux服务器都不开放telnet服务，而改用更安全的ssh方式了
 
 
