@@ -1,3 +1,57 @@
+## overview
+
+在Go语言中，reflect实现了运行时反射。`reflect` 包会帮助识别 `interface{}` 变量的底层具体类型和具体值。这正是我们所需要的。
+
+## reflect.Type和reflect.Value
+
+参数 `interface{}` 的具体类型由 `reflect.Type` 表示，而 `reflect.Value` 表示它的具体值。[reflect.TypeOf()](https://golang.org/pkg/reflect/#TypeOf) 和 [reflect.ValueOf()](https://golang.org/pkg/reflect/#ValueOf) 两个函数可以分别返回 `reflect.Type` 和 `reflect.Value`。
+
+## reflect.Kind
+
+`reflect`包中还有一个重要的类型：[Kind](https://golang.org/pkg/reflect/#Kind)。
+
+Kind和Type的类型可能看起来很相似，但它们之间存在差异。
+
+Kind表示该类型的特定种类。
+
+
+
+## NumField()和Field()方法
+
+[NumField()](https://golang.org/pkg/reflect/#Value.NumField) 方法返回结构体中字段的数量，而 [Field(i int)](https://golang.org/pkg/reflect/#Value.Field) 方法返回字段 `i` 的 `reflect.Value`。
+
+
+
+## New()
+
+```go
+// New returns a Value representing a pointer to a new zero value
+// for the specified type. That is, the returned Value's Type is PtrTo(typ).
+func New(typ Type) Value {
+  
+}
+```
+
+
+
+
+## Interface()
+
+```go
+// Interface returns v's current value as an interface{}.
+// It is equivalent to:
+//	var i interface{} = (v's underlying value)
+// It panics if the Value was obtained by accessing
+// unexported struct fields.
+func (v Value) Interface() (i interface{}) {
+  
+}
+```
+
+
+
+
+
 使`interface{}`有更大的发挥余地。
 
 可以大大提高程序的灵活性，使得interface{}有更大的发挥余地

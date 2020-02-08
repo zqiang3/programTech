@@ -22,6 +22,21 @@ brew install kafka
 /usr/local/etc/kafka/
 ```
 
+
+
+## 启动
+
+kafka依赖zookeeper，因此需要首先启动zookeeper。
+
+Apache Kafka depends on Zookeeper for cluster management. Hence, prior to starting Kafka, Zookeeper has to be started. There is no need to explicitly install Zookeeper, as it  comes included with Apache Kafka.
+
+```bash
+bin/zookeeper-server-start.sh config/zookeeper.properties
+bin/kafka-server-start.sh config/server.properties
+```
+
+
+
 ## 常用命令
 
 ```bash
@@ -39,6 +54,26 @@ kafka-topics --delete --zookeeper localhost:2181 --topic suday
 
 
 producer 和 consumer 只跟 leader 交互
+
+
+
+## 基础概念
+
+在深入了解kafka之前，必须深入了解主题，经纪人，生产者和消费者等主要术语。
+
+### 主题
+
+属于特定类别的消息流称为主题。数据存储在主题中，主题被拆分成分区。对于每个主题，kafka保存一个分区的数据。
+
+### partition
+
+kafka分区是消息的线性有序序列，每个消息由它们的索引（偏移）来标识。kafka集群中的所有数据都是不相连的分区联合。传入消息写在分区的末尾，消息由消费者顺序读取。
+
+### Replicas of partition
+
+副本只是一个分区的备份，副本从不读取或写入数据。它们用于防止数据丢失。
+
+
 
 
 

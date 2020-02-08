@@ -1,5 +1,0 @@
-两者用法一样
-for k, v in dict.iteritems():
-	print k, v
-
-区别是items()返回列表对象，iteritems()返回迭代器对象，iteritems()性能更快

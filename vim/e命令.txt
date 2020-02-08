@@ -1,4 +1,0 @@
-:e
-to reload the file
-:e!
-to force discard your local changes and reload from the disk

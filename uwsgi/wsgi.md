@@ -34,7 +34,7 @@ def application(environ, start_response):
 
 无论多么复杂的Web应用程序，入口都是一个WSGI处理函数。HTTP请求的所有输入信息都可以通过`environ`获得，HTTP响应的输出都可以通过`start_response()`加上函数返回值作为Body。
 
-## 简单示例
+## python自带的wsgi web server
 
 ```python
 # server.py

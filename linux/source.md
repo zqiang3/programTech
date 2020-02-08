@@ -2,13 +2,15 @@
 
 <https://blog.csdn.net/violet_echo_0908/article/details/52056071>
 
+## 作用
+
+**在当前bash环境下读取并执行file中的命令**
+
 ## 命令用法
 
 ```bash
 source FileName
 ```
-
-
 
 在当前bash环境下读取并执行FileName中的命令
 

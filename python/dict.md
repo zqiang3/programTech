@@ -41,3 +41,9 @@ The following example shows the usage of setdefault() method.
 dict = {'Name': 'Zara', 'Age': 7}
 print "Value : %s" %  dict.setdefault('Age', None)
 ```
+
+# items(), iteritems()
+
+As you are in python3 , use `dict.items()` instead of `dict.iteritems()`
+
+`iteritems()` was removed in python3, so you can't use this method anymore.
