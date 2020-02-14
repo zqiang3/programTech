@@ -1,1 +1,0 @@
-rm `ls *.txt|egrep -v test.txt`
