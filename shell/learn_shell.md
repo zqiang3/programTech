@@ -1,5 +1,30 @@
 
 
+
+
+## ref
+
+| $0   | 当前脚本的文件名                                             |
+| ---- | ------------------------------------------------------------ |
+| $n   | 传递给脚本或函数的参数。n 是一个数字，表示第几个参数。例如，第一个参数是$1，第二个参数是$2。 |
+| $#   | 传递给脚本或函数的参数个数。                                 |
+| $*   | 传递给脚本或函数的所有参数。                                 |
+| $@   | 传递给脚本或函数的所有参数。被双引号(" ")包含时，与 $* 稍有不同，下面将会讲到。 |
+| $?   | 上个命令的退出状态，或函数的返回值。                         |
+| $$   | 当前Shell进程ID。对于 Shell 脚本，就是这些脚本所在的进程ID。 |
+
+
+
+| 运算符 | 说明                                 |
+| ------ | ------------------------------------ |
+| =      | 两个字符串是否相等                   |
+| !=     | 是否不相等                           |
+| -z     | 检测字符串长度是否为0，为0返回true   |
+| -n     | 检测字符串长度是否为0，不为0返回true |
+| str    | 检测字符串是否为空，不为空返回true   |
+
+
+
 ## 快速入门
 
 **变量赋值**
@@ -112,11 +137,251 @@ echo $your_name
 echo ${your_name}
 ```
 
+如果变量与其他字符相连的话，需要使用大括号`{}`
+
 推荐给所有变量加上花括号，这是个好的编程习惯。IntelliJ IDEA编写shell script时，IDE就会提示加花括号。
+
+## 字符串
+
+字符串可以用单引号，也可以用双引号，也可以不用引号。
+
+###单引号的限制
+
+单引号里的任何字符都会**原样输出**，单引号字符串中的变量是无效的；单引号字符串中不能出现单引号。
+
+###双引号的优点
+
+双引号里可以有变量，双引号里可以出现转义字符
+
+### 获取字符串长度
+
+```shell 
+string="abcd"
+echo ${#string}  # 输出4
+```
+
+### 提取子字符串
+
+```shell
+string="aibaba is nb"
+echo ${string:1:4}  # 输出 liba
+```
+
+## shell展开
+
+link: https://www.jianshu.com/p/403f3554e2c1
+
+## printf
+
+```shell
+printf "%d %s\n" 1 "abc"  # arguments 使用空格分隔，不用逗号。
+printf '%d %s\n' 1 "abc"  # 单引号与双引号效果一样
+printf %s abcde  # 没有引号也可以输出
+printf %s abc def # 参数多于格式控制符时，format-string可以被重用
+printf "%s and %d \n"  # 如果没有 arguments，那么 %s 用 NULL 代替，%d 用0代替
+```
+
+
+
+## 数组
+
+```shell
+array_name=(value0 value1 value2)  # 定义数组
+
+# 或者
+array_name=( value0
+value1
+value2
+value3 )
+
+# 还可以单独定义数组的各个分量
+array_name[0]=value0 
+array_name[1]=value1 
+array_name[2]=value2
+
+# 读取数组元素
+valuen=${array_name[2]}
+
+# 使用@或*可以获取数组中的所有元素
+${array_name[*]}
+${array_name[@]}
+
+# 取得数组元素的个数
+length=${#array_name[@]} 
+# 或者
+length=${#array_name[*]} 
+# 取得数组单个元素的长度
+lengthn=${#array_name[n]}
+```
+
+
+
+##Shell 条件语句
+
+if 语句通过关系运算符判断表达式的真假来决定执行哪个分支。Shell 有三种 if ... else 语句：
+
+- if ... fi 语句；
+- if ... else ... fi 语句；
+- if ... elif ... else ... fi 语句。
+
+### if ... else 语句
+
+if ... else 语句的语法：
+
+```
+if [ expression ]
+then
+   Statement(s) to be executed if expression is true
+fi
+```
+
+最后必须以 fi 来结尾闭合 if，fi 就是 if 倒过来拼写，后面也会遇见。
+
+注意：expression 和方括号([ ])之间必须有空格，否则会有语法错误。
+
+举个例子：
+
+```
+#!/bin/sh
+
+a=10
+b=20
+
+if [ $a == $b ]
+then
+   echo "a is equal to b"
+fi
+
+if [ $a != $b ]
+then
+   echo "a is not equal to b"
+fi
+```
+
+### if ... else ... fi 语句
+
+```shell
+if [ expression ] 
+then
+Statement(s) to be executed if expression is true 
+else
+Statement(s) to be executed if expression is not true 
+fi
+```
+
+### if ... elif ... fi语句
+
+```shell
+if [ expression 1 ] 
+then
+Statement(s) to be executed if expression 1 is true 
+elif [ expression 2 ]
+then
+Statement(s) to be executed if expression 2 is true 
+elif [ expression 3 ]
+then
+Statement(s) to be executed if expression 3 is true 
+else
+Statement(s) to be executed if no expression is true 
+fi
+```
+
+## test
+
+test 命令用于检查某个条件是否成立，与方括号([ ])类似。
+
+```shell
+num1=$[2*3]
+num2=$[1+5]
+if test $[num1] -eq $[num2] 
+then
+echo 'The two numbers are equal!' 
+else
+echo 'The two numbers are not equal!' 
+fi
+```
+
+
 
 ## for
 
+for循环一般格式为
 
+```shell
+for 变量 in 列表
+do 
+	command1
+	command2
+	...
+	commandN
+done
+	
+```
+
+## while
+
+```shell
+COUNTER=0
+while [ $COUNTER -lt 5 ] 
+do
+COUNTER='expr $COUNTER+1'
+echo $COUNTER 
+done
+```
+
+
+
+while 循环可用于读取键盘信息。下面的例子中，输入信息被设置为变量FILM，按结束循环。
+
+
+
+```shell
+echo 'type <CTRL-D> to terminate' 
+echo -n 'enter your most liked film: ' 
+while read FILM
+do
+echo "Yeah! great film the $FILM" 
+done
+```
+
+## 函数
+
+定义
+
+```bash
+function function_name() {
+	list of commands
+	[return value]
+}
+```
+
+函数返回值，可以显式增加 return 语句;如果不加，会将最后一条命令运行结果作为返回值。
+
+hell 函数返回值只能是整数
+
+
+
+example
+
+```shell
+#!/bin/bash
+# Define your function here
+Hello () {
+	echo "Url is http://see.xidian.edu.cn/cpp/shell/"
+}
+# Invoke your function
+Hello
+```
+
+调用函数只需要给出函数名，不需要加括号。
+
+函数返回值在调用该函数后通过 $? 来获得
+
+像删除变量一样，删除函数也可以使用 unset 命令，不过要加上 .f 选项
+
+## 注释
+
+以`#`开头的行就是注释，会被解释器忽略
 
 ## 链接
 

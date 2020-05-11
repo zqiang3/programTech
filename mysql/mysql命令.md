@@ -39,11 +39,14 @@ desc 表名
 show create table 表名
 
 # 建表
-mysql> create table student
-    -> (
-    -> sid varchar(20) not null primary key,
-    -> name varchar(20) not null,
-    -> address varchar(50)
+create table api_inline_image ( `id` bigint(20) NOT NULL PRIMARY KEY AUTO_INCREMENT, `app_id` varchar(255) NOT NULL, `from_email_address` VARCHAR(255) NOT NULL, `content_id` VARCHAR(255) NOT NULL,`file_key` TEXT NOT NULL, `file_size` BIGINT(20) NOT NULL DEFAULT '0');
+
+mysql> create table api_inline_image (                                                                -> `id` bigint(20) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    -> `app_id` varchar(255) NOT NULL,
+    -> `from_email_address` VARCHAR(255) NOT NULL,
+    -> `content_id` VARCHAR(255) NOT NULL,
+    -> `file_key` TEXT NOT NULL,
+    -> `file_size` BIGINT(20) NOT NULL DEFAULT '0'
     -> );
 
 # 删表
@@ -79,7 +82,8 @@ alter table TABLENAME drop columnnane;
 SHOW INDEX FROM tablename
 
 # 添加字段
-alter table TABLENAME 
+alter table api_inline_image add `created_time` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) comment '创建时间';
+alter table api_inline_image add created_time timestamp(6) not null default current_timestamp(6);
 
 # 添加索引
 
@@ -144,11 +148,31 @@ explain select * from person where name = 'sql';
 
 https://dev.mysql.com/doc/refman/8.0/en/numeric-types.html
 
+book: 《MySQL必知必会》附录D
+
 类型声明中括号中的数字是*显示宽度*，它与可以存储在数据类型中的值的范围无关。只是因为你可以声明`Int(20)`并不意味着你可以存储高达10 ^ 20的值：
 
 > [...]这个可选的显示宽度可以被应用程序用来显示宽度小于为该列指定的宽度的整数值，方法是用空格填充它们。... **显示宽度不限制可存储在列中的值的范围，也不限制显示宽度超过为列指定的值的位数。**例如，指定为SMALLINT（3）的列具有通常的SMALLINT范围-32768至32767，并且三个字符所允许的范围之外的值使用三个以上的字符显示。
 
 
+
+### 1. The CHAR and VARCHAR Types
+
+Link: https://dev.mysql.com/doc/refman/8.0/en/char.html
+
+有两种基本的串类型，分别为定长串和变长串。
+
+CHAR是定长串类型, 长度是0-255
+
+VARCHAR是变长串，长度可以是0-65535字节
+
+TEXT属于变长串类型
+
+变长数据类型这样灵活，为什么还要使用定长数据类型？原因是因为性能，MySQL处理定长列比处理变长列快得多。此外，MySQL不允许对变长列（或一个列的可变部分）进行索引，这也会极大地影响性能。
+
+### 2. Integer Types
+
+Link: https://dev.mysql.com/doc/refman/8.0/en/integer-types.html
 
 
 
