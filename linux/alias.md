@@ -1,0 +1,1 @@
+登陆有devbox，我是直接alias成2dev:  alias 2dev="expect -c 'spawn ssh [liaoyudong@10.8.126.142](mailto:liaoyudong@10.8.126.142);interact }'"

@@ -1,0 +1,1 @@
+**Latin-1**, also called ISO-8859-1, is an 8-bit **character set** endorsed by the International Organization for Standardization (ISO) and represents the alphabets of Western European languages.

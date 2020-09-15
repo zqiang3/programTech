@@ -62,6 +62,7 @@ scp /val/test.tar.gz root@www.test.com:/val/test.tar.gz
 
 ```bash
 scp -r root@www.test.com:/val/test/ /val/test/
+scp go1.13.12.linux-amd64.tar.gz zhangqiang.3@10.227.4.118:/home/zhangqiang.3/downloads
 ```
 
 ###把本地的目录复制到远程主机上
