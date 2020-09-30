@@ -2,9 +2,15 @@
 
 https://linux.cn/article-2434-1.html
 
+## 安装
+
+```
+apt-get install net-tools
+```
 
 
 
+## 选项
 
 ```bash
 
@@ -19,7 +25,7 @@ https://linux.cn/article-2434-1.html
 -n 能显示数字的全部转化成数字
 ```
 
-### 实例
+##实例
 
 ```bash
 netstat -a
@@ -44,11 +50,7 @@ netstat -r  # 显示核心路由信息
 netstat -ap | grep ssh
 ```
 
-## 安装
-
-```bash
-apt-get install net-tools
-```
+## 
 
 ## 详细说明
 
@@ -63,5 +65,13 @@ tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN
 tcp        0      0 192.168.1.2:49058       173.255.230.5:80        ESTABLISHED
 tcp        0      0 192.168.1.2:33324       173.194.36.117:443      ESTABLISHED
 tcp6       0      0 ::1:631                 :::*                    LISTEN
+```
+
+## example
+
+### 查看本机TCP连接状态
+
+```bash
+netstat -n | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
 ```
 

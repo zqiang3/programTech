@@ -53,7 +53,7 @@ lsof -d 2-3
 
 lsof -i         # 列出所有网络连接
 
-lsof -i 4       # 仅显示ipv6连接
+lsof -i 4       # 仅显示ipv4连接
 
 lsof -i tcp     # 仅显示tcp连接
 
@@ -62,6 +62,8 @@ lsof -i :3306   # 显示与端口相关的网络信息
 lsof -i udp:55
 
 lsof -i tcp:80
+
+lsof -i 4:6379  # IPv4类型
 
 lsof -i@172.16.12.5    # 显示与特定主机的连接
 lsof -i@172.16.12.5:22

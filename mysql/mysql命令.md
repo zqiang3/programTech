@@ -421,6 +421,22 @@ select k from t where id=1 lock in share mode;
 select k from t where id=1 for update;
 ```
 
+## 隔离级别
+
+查看事务的隔离级别
+
+```
+select @@global.tx_isolation,@@tx_isolation;
+```
+
+设置事务的隔离级别
+
+```
+SET [SESSION | GLOBAL] TRANSACTION ISOLATION LEVEL {READ UNCOMMITTED | READ COMMITTED | REPEATABLE READ | SERIALIZABLE}
+```
+
+
+
 ## 锁
 
 查看锁表情况

@@ -1,6 +1,105 @@
-## 第一个go程序
+## 值类型与引用类型
+
+不管是Java还是golang中，都有值类型和引用类型的概念。在使用两者时，发现这两种语言之间还是有差异的。
+
+**值类型**：值拷贝。这些类型的变量直接指向存在内存中的值，值类型的变量的值存储在栈中。当使用等号=将一个变量的值赋给另一个变量时，如 j = i ,实际上是在内存中将 i 的值进行了拷贝。可以通过 &i 获取变量 i 的内存地址。 
+
+**引用类型**：一个引用变量r1的引用变量存储的是r1的值所在的内存地址，或内存地址中第一个元素所在的位置，这个内存地址被称之为指针，这个指针实际上被存储在引用变量中。从这个角度来看，任何变量都是值类型。
+
+## 数组是值类型
+
+如下代码片段定义了一个数组a，它是值类型，复制给b是值拷贝copy，当b发生变化后a并不会发生任何变化
 
 ```go
+//由 main 函数作为程序入口点启动
+func main() {
+	a :=[5]int{1,2,3,4,5}    //数组Array类型，带有具体的长度
+	b := a   //值拷贝，等价于a :=[5]int{1,2,3,4,5}, b :=[5]int{1,2,3,4,5}
+	b[2] = 6 //b :=[5]int{1,2,3,4,5}，b[2]=8, b = [5]int{1,2,6,4,5}
+	fmt.Println(a, b)
+}
+```
+
+切片则不然，由于切片是引用类型，其拷贝（赋值）属于地址拷贝，所以其中一个元素的值发生变化，拷贝的另一方也会发生改变。
+
+## 没有类
+
+Golang中没有class关键字来定义类，对于事物的抽象以struct来定义，因此一个struct变量可以被看做一个类实例。但是这有别于java，因为struct在方法中传参时是值类型而非引用类型，所以当我们需要在方法内改变这个对象的字段值时，应该使用的是struct变量的指针，而非struct变量。
+
+## 数组
+
+go语言支持多维数组
+
+##struct, type
+
+```go
+type ElemType int
+
+type Student struct {
+    age int
+    name string
+}
+```
+
+##条件、循环
+
+```go
+if a > 3 {
+}
+
+// if for 不要加括号
+for m := 1; m < 10; m++ {
+}
+
+// 没有while，可以用for break实现
+```
+
+##没有三元运算符
+
+为了避免难以理解的复杂表达式
+
+可以用以下形式代替
+
+```go
+if expr {
+  n = trueVal
+} else {
+  n = falseVal
+}
+```
+
+##没有专门的字符类型
+
+存放单个ascii字符，可以用byte保存
+
+
+
+##没有隐式类型转换
+
+go中的类型转换分为强制类型转换和类型断言
+
+## 字符串
+
+字符串可以按切片处理
+
+```go
+	  var str = "Hello world"
+    for i := 0; i < len(str); i++ {
+        fmt.Printf("str[%d]=%c\n", i, str[i])
+    }
+```
+
+
+
+
+
+```
+
+
+
+## 第一个go程序
+
+​```go
 package main
 import "fmt"
 
@@ -13,17 +112,13 @@ $ go build hello.go
 $ ./hello
 ```
 
-## package
+## 包
 
 package main is special
 
 import exactly the packages you need
 
-## func
 
-function declaration: func
-
-函数名, 括号，参数列表，函数体
 
 ## 变量
 
@@ -130,7 +225,7 @@ strconv.ParseFloat(s string, bitSize int) (f flaot64, err error)
 
 带有 `++` 和 `--` 的只能作为语句，而非表达式，因此 `n = i++` 这种写法是无效的 。其它像 `f(i++)` 或者`a[i]=b[i++]` 这些可以用于 C、C++ 和 Java 中的写法在 Go 中也是不允许的。 
 
-## 运算符优先级
+优先级
 
 ```
 优先级   运算符
@@ -329,7 +424,7 @@ for pos, char := range str {
 os.Exit(1)
 ```
 
-## function
+## 函数
 
 * can return multiple values
 * named results, initialized as zero values
@@ -340,7 +435,13 @@ func name(parameter-list) (result-list) {
 }
 ```
 
-go不支持函数重载
+go不支持函数重载、
+
+
+
+## 方法的接收者
+
+The rule about pointers vs. values for receivers is that value methods can be invoked on pointers and values, but pointer methods can only be invoked on pointers.
 
 ## defer
 

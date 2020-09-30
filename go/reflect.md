@@ -142,4 +142,13 @@ const (
 )
 ```
 
-## 反射 基本操作
+
+
+## 查看一个变量的类型
+
+```
+import "reflect"
+
+fmt.Println(reflect.TypeOf(v).String)
+```
+
