@@ -91,26 +91,11 @@ go中的类型转换分为强制类型转换和类型断言
 
 
 
+## 字符类型
+
+**Go**语言的字符有以下两种： 一种**是**uint8 **类型**，或者叫byte 型，代表了ASCII 码的一个字符。 另一种**是rune 类型**，代表一个UTF-8 字符，当需要处理中文、日文或者其他复合字符时，则需要用到**rune 类型**。 **rune 类型**等价于int32 **类型**。
 
 
-```
-
-
-
-## 第一个go程序
-
-​```go
-package main
-import "fmt"
-
-func main() {
-    fmt.Println("Hello, world")
-}
-
-$ go run hello.go
-$ go build hello.go
-$ ./hello
-```
 
 ## 包
 
@@ -505,7 +490,37 @@ func NewFile(fd int, name string) *File {
 
 这三种类型为引用数据类型，在使用之前必须初始化。例如，切片包含一个指向数组的指针，长度以及容量。
 
+## map
 
+map 的读取和设置也类似 slice 一样，通过 key 来操作，只是 slice 的index 只能是｀int｀类型，而 map 多了很多类型，可以是 int ，可以是 string及所有完全定义了 == 与 != 操作的类型。
+
+```go
+// 1. 先声明再初始化最后赋值
+var m map[int]int
+m = make(map[int]int)
+m[10] = 5
+
+// 2.make初始化后赋值
+m := make(map[int]int)
+m[10] = 5
+
+// 3. 直接初始化赋值
+m := map[int]int{1: 1, 10: 5}
+
+// 遍历
+for key, value := range m {
+  fmt.Println(key, value)
+}
+
+// 判断键值是否存在
+if v, ok := m[10]; ok {
+  
+}
+```
+
+
+
+## slice
 
 ## range
 

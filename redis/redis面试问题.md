@@ -71,3 +71,39 @@ Redis可以使用主从同步，从从同步。第一次同步时，主节点做
 Redis Sentinal着眼于高可用，在master宕机时会自动将slave提升为master，继续提供服务。
 
 Redis Cluster着眼于扩展性，在单个redis内存不足时，使用Cluster进行分片存储。
+
+
+
+## 过期删除策略
+
+惰性删除和定期删除
+
+
+
+## 内存淘汰策略
+
+* noeviction
+* allkeys-lru
+* volatile-lru
+* allkeys-random
+* volatile-random
+* volatile-ttl: 在设置过期时间的key中，根据key的过期时间进行淘汰，越早过期的先被淘汰
+
+**命令**
+
+```bash
+127.0.0.1:6379> config get maxmemory-policy
+1) "maxmemory-policy"
+2) "noeviction"
+
+127.0.0.1:6379> config set maxmemory-policy allkeys-lru
+```
+
+
+
+
+
+## LRU算法
+
+**LRU(Least Recently Used)**，即最近最少使用，是一种缓存置换算法。在使用内存作为缓存的时候，缓存的大小一般是固定的。当缓存被占满，这个时候继续往缓存里面添加数据，就需要淘汰一部分老的数据，释放内存空间用来存储新的数据。这个时候就可以使用LRU算法了。其核心思想是：如果一个数据在最近一段时间没有被用到，那么将来被使用到的可能性也很小，所以就可以被淘汰掉。
+

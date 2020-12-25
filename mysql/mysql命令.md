@@ -399,6 +399,10 @@ select city,name,age from t where city='杭州' order by name limit 1000  ;
 ## 事务
 
 ```
+# 查看autocommit值
+select @@autocommit;
+show variables like '%autocommit%';
+
 # 每个语句是一个事务，自动提交
 set autocommit = 1
 
