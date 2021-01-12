@@ -1,0 +1,1 @@
+Java ME是一个针对嵌入式设备的瘦身版，Java SE的标准库无法在Java ME上使用，Java ME的虚拟机也是瘦身版。不幸的是，Java ME从来没有真正流行起来，反而是Android开发成为了移动平台的标准之一。

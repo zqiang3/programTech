@@ -1,39 +1,11 @@
+## 常用命令
+
 ```bash 
 # 连接mysql
 mysql -h host -P port -u user -p
 
 # 显示可用的存储引擎
 show engines;
-
-
-# ----------------表相关命令--------------
-# 显示数据表
-show tables
-
-# 显示表的结构
-desc 表名
-
-#
-show create table 表名
-
-# 建表
-
-
-mysql> create table api_inline_image (                                                                -> `id` bigint(20) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    -> `app_id` varchar(255) NOT NULL,
-    -> `from_email_address` VARCHAR(255) NOT NULL,
-    -> `content_id` VARCHAR(255) NOT NULL,
-    -> `file_key` TEXT NOT NULL,
-    -> `file_size` BIGINT(20) NOT NULL DEFAULT '0'
-    -> );
-
-# 删表
-drop table 表名
-
-# 删除表中的所有内容
-# 不带where参数的delete语句可以删除mysql表中所有内容
-delete from 表名
-# --------------------------------------
 
 # ----------------查询命令--------------
 # 查询
@@ -52,7 +24,6 @@ select id, created_time from 表名 where user_id = 6729061087028707336;
 
 # 排序
 ORDER BY FIELD1 [ASC [DESC][默认 ASC]], [field2...] [ASC [DESC][默认 ASC]]
-
 
 
 # 查看表中的索引
@@ -132,10 +103,13 @@ CREATE DATABASE mydb CHARACTER SET utf8 COLLATE utf8_icelandic_ci;
 
 ## 表级语句
 
-```
-SHOW TABLES;
+```bash 
+# 常用
+show tables;
+desc [TABLE_NAME];
+show create table [TABLE_NAME];
+
 SHOW TABLES FROM db_name;
-SHOW CREATE TABLE tbl_name;
 SHOW COLUMNS FROM tbl_name;  // 同 DESCRIBE tbl_name;
 SHOW INDEX FROM tbl_name;
 SHOW TABLE STATUS;
@@ -157,6 +131,12 @@ show engines;
 | InnoDB   | supports transactions, row-level locking, foreign keys |      |
 |          |                                                        |      |
 |          |                                                        |      |
+
+## 建库
+
+```bash
+CREATE DATABASE [IF NOT EXIST] db_name;
+```
 
 
 
@@ -189,8 +169,12 @@ create table api_inline_image ( `id` bigint(20) NOT NULL PRIMARY KEY AUTO_INCREM
 
 ## 删表
 
-```
+```bash 
 drop table [TABLE]
+
+# 删除表中的所有内容
+# 不带where参数的delete语句可以删除mysql表中所有内容
+delete from 表名
 ```
 
 

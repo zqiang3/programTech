@@ -17,9 +17,9 @@ git br --merged | egrep -v "(^\*|master)" | xargs git br -d
 ## 删除远程分支
 
 ```bash
-git branch -r  | grep boe | awk -F '/' '{print $2}' | xargs -I {} git push origin :{}
+git branch -r  | grep sza | awk -F '/' '{print $2}' | xargs -I {} git push origin :{}
 
-git b | grep boe | xargs git b -D
+git b | grep sza | xargs git b -D
 
 git b | grep szq | xargs -I {} git push origin :{}
 
